@@ -1,0 +1,13 @@
+footer {
+    margin-top: 40px;
+}
+
+h5#card-title-category {
+    text-align: center; 
+    margin-top: 107px; 
+    position: sticky;
+}
+
+div#my-card {
+    margin: 10px;
+}
