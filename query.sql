@@ -145,6 +145,12 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+CREATE TABLE recuperacao (
+  utilizador  VARCHAR(255) NOT NULL,
+  confirmacao VARCHAR(40) NOT NULL,
+  KEY(utilizador, confirmacao)
+)
+
 --
 -- Dumping data for table `usuario`
 --
