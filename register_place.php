@@ -21,29 +21,29 @@ require_once 'includes/header.html';
               <div class="col-10">
                 <input type="text" class="form-control" name="name" required></div>
             </div>
-            <div class="form-group row"><label for="mail" class="col-2 col-form-label">E-mail (obrigatório)</label>
+            <div class="form-group row"><label for="mail" class="col-2 col-form-label">E-mail</label>
               <div class="col-10">
-                <input type="email" class="form-control" name="email" placeholder="email@exemplo.com" required></div>
+                <input type="email" class="form-control" name="email" placeholder="(obrigatório)" required></div>
             </div>
-            <div class="form-group row"><label for="nameestabelecimento" class="col-2 col-form-label">Nome do Estabelecimento (obrigatório)</label>
+            <div class="form-group row"><label for="nameestabelecimento" class="col-2 col-form-label">Nome do Estabelecimento </label>
               <div class="col-10">
-                <input type="text" class="form-control" name="nomeestabelecimento" required></div>
+                <input type="text" class="form-control" name="nomeestabelecimento" placeholder="(obrigatório)" required></div>
             </div>
-            <div class="form-group row"><label for="whatsapp" class="col-2 col-form-label">Telefone (obrigatório)</label>
+            <div class="form-group row"><label for="whatsapp" class="col-2 col-form-label">Telefone</label>
               <div class="col-10">
-                <input type="number" class="form-control" name="telefone" required></div>
+                <input type="number" class="form-control" name="(obrigatório)" required></div>
             </div>
-            <div class="form-group row"><label for="endereco" class="col-2 col-form-label">Whatsapp (opcional)</label>
+            <div class="form-group row"><label for="endereco" class="col-2 col-form-label">Whatsapp</label>
               <div class="col-10">
-                <input type="number" class="form-control" name="whatsapp"></div>
+                <input type="number" class="form-control" name="whatsapp" placeholder="(opcional)"></div>
             </div>
-            <div class="form-group row"><label for="facebook" class="col-2 col-form-label">Facebook (opcional)</label>
+            <div class="form-group row"><label for="facebook" class="col-2 col-form-label">Facebook</label>
               <div class="col-10">
-                <input type="text" class="form-control" name="facebook"></div>
+                <input type="text" class="form-control" name="facebook" placeholder="(opcional)"></div>
             </div>
-            <div class="form-group row"><label for="endereco" class="col-2 col-form-label">Endereço (opcional)</label>
+            <div class="form-group row"><label for="endereco" class="col-2 col-form-label">Endereço</label>
               <div class="col-10">
-                <input type="text" class="form-control" name="endereco"></div>
+                <input type="text" class="form-control" name="endereco" placeholder="(obrigatório)" required></div>
             </div>
             <div class="form-group row"><label for="descricao" class="col-2 col-form-label">Descrição</label>
               <div class="col-10">

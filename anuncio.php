@@ -1,10 +1,16 @@
-<?php require_once 'includes/header.html' ?>
+<?php 
+
+$title = 'Anuncio Teste';
+require_once 'includes/header.php';
+
+?>
     <div class="py-5 text-center text-white h-100 align-items-center d-flex" style="background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(&quot;assets/images/pizza/frente-pizzaria.jpg&quot;); background-position: center center, center center; background-size: cover, cover; background-repeat: repeat, repeat;" alt="frente-pizzaria">
         <div class="container">
             <div class="row">
                 <div class="mx-auto col-lg-8 col-md-10">
                     <h1 class="display-3 mb-4">Pepperoni Fornalha</h1>
                     <p class="lead mb-5">A Peperoni a melhor em qualidade e sabor na região Oferecemos amplo cardápio de pizzas, calzones, lasanhas, e porções. Aceitamos encomendas para eventos pequenos e aniversário.</p>
+					<button class="btn btn-warning" type="submit">Favoritar</button>
                 </div>
             </div>
         </div>
@@ -38,7 +44,7 @@
                 </div>
             </div>
         </div>
-        <div class="jumbotron jumbotron-fluid">
+        <div class="jumbotron">
             <div class="container">
               <h1 class="display-4">Informações de contato</h1>
               <table class="table">

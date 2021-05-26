@@ -11,3 +11,8 @@ h5#card-title-category {
 div#my-card {
     margin: 10px;
 }
+
+div.jumbotron {
+    position: sticky;
+    margin: 10px 60px 0px 60px;
+}

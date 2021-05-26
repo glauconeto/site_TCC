@@ -1,6 +1,3 @@
 TODO:
-    Criar página de login e registro. 
-    (Pesquisar em como implementar redefinição de senha)
+    Criar página de login e registro. (Com edição de nome de usuário e senha)
     Implementar feature de favoritos
-    trocar páginas estáticas pela dinâmica com PHP para features pendentes
-    Juntar o campo do formulário com a função, não passando na função não pode ir pro banco e não vai ser válido. Processar no front para validação

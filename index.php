@@ -1,7 +1,7 @@
 <?php 
 
 $title = 'Início';
-require_once 'includes/header.html';
+require_once 'includes/header.php';
 
 ?>
 
@@ -61,7 +61,7 @@ require_once 'includes/header.html';
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-img-overlay align-items-center d-flex">
-                            <h4 class="w-100 text-center"><a class="card-link" href="anuncio.html">Peperoni Fornalha</a></h4>
+                            <h4 class="w-100 text-center"><a class="card-link" href="anuncio.php">Peperoni Fornalha</a></h4>
                         </div>
                         <img class="img-fluid w-100 rounded" src="assets/images/pizza/frente-pizzaria.jpg" alt="Card image">
                         <div class="card-body">

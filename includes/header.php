@@ -23,19 +23,15 @@
             <div class="navbar-collapse collapse show" id="navbar10">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="login.php">Login</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="register_place.php">Sugerir estabelecimento</a>
                     </li>
                     <li class="nav-item">
-                        if ($active == 1 && isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
+                        <?php if ($active == 1 && isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
                             <li><a href="dashboard.php">Olá <?php echo htmlspecialchars($_SESSION["username"]); ?></a></li>
                             <a href="logout.php" class="nav-link">Sair</a>
                         <?php else:
                                 echo '<a href="login.php" class="nav-link">Entrar</a>';
             	        endif; ?>
-                        <a class="nav-link" href="login.php">Entrar</a>
                     </li>
                     <li class="nav-item">
                         <form class="form-inline" action="pesquisa.php" method="post">
