@@ -72,7 +72,7 @@ require_once 'includes/header.php';
                     <td>
                         <h1>
                             <button class="btn btn-info">
-                                <a href="https://facebook.com/pagina" style="color: #e8f3ff;">
+                                <a href="https://facebook.com/exemplopizzafornalha" style="color: #e8f3ff;">
                                     <i class="fa fa-facebook"></i>
                                 </a>
                             </button>
@@ -80,7 +80,7 @@ require_once 'includes/header.php';
                     </td>
                   </tr>
                   <tr>
-                    <th scope="row">Whatsapp</th>
+                    <th scope="row">Celular (Whatsapp)</th>
                     <td>
                         <h1>
                             <button class="btn btn-info">

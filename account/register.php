@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once 'includes/config.php';
+require_once '../includes/config.php';
  
 $username = $password = $email = $confirm_password = '';
 $username_err = $email_err = $password_err = $confirm_password_err = '';
@@ -105,8 +105,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['token']) && isset($
 
 $title = 'Cadastre-se';
 
-require_once 'includes/header.php';
+require_once '../includes/header.php';
 
-require_once 'templates/register.html';
+require_once '../templates/register.html';
 
-require_once 'includes/footer.html';
+require_once '../includes/footer.html';

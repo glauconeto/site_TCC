@@ -1,7 +1,7 @@
 <?php 
 
 $title='Registrar Estabelecimento';
-require_once 'includes/header.html'; 
+require_once 'includes/header.php';
 
 ?>
 
@@ -16,39 +16,59 @@ require_once 'includes/header.html';
       <div class="row">
         <div class="mx-auto col-md-10 col-10 bg-white p-5 offset-md-1">
           <h1 class="mb-4">Registrar Estabelecimento</h1>
-          <form id="c_form-h" action="register_place.php" method="post">
-            <div class="form-group row"><label for="inputname" class="col-2 col-form-label">Seu Nome (obrigatório)</label>
+          <form id="c_form-h" action="process_place.php" method="post">
+            <div class="form-group row">
+              <label for="inputname" class="col-2 col-form-label">Seu Nome</label>
               <div class="col-10">
-                <input type="text" class="form-control" name="name" required></div>
+                <input type="text" class="form-control" name="nameperson" required></div>
             </div>
-            <div class="form-group row"><label for="mail" class="col-2 col-form-label">E-mail</label>
+            <div class="form-group row">
+              <label for="mail" class="col-2 col-form-label">E-mail</label>
               <div class="col-10">
-                <input type="email" class="form-control" name="email" placeholder="(obrigatório)" required></div>
+                <input type="email" class="form-control" name="email" required></div>
             </div>
-            <div class="form-group row"><label for="nameestabelecimento" class="col-2 col-form-label">Nome do Estabelecimento </label>
+            <div class="form-group row">
+              <label for="nameestabelecimento" class="col-2 col-form-label">Nome do Estabelecimento</label>
               <div class="col-10">
-                <input type="text" class="form-control" name="nomeestabelecimento" placeholder="(obrigatório)" required></div>
+                <input type="text" class="form-control" name="nameplace" required></div>
             </div>
-            <div class="form-group row"><label for="whatsapp" class="col-2 col-form-label">Telefone</label>
+            <div class="form-group row">
+              <label for="whatsapp" class="col-2 col-form-label">Telefone</label>
               <div class="col-10">
-                <input type="number" class="form-control" name="(obrigatório)" required></div>
+                <input type="text" class="form-control" name="telefone" required></div>
             </div>
-            <div class="form-group row"><label for="endereco" class="col-2 col-form-label">Whatsapp</label>
+            <div class="form-group row">
+              <label for="endereco" class="col-2 col-form-label">Celular</label>
               <div class="col-10">
-                <input type="number" class="form-control" name="whatsapp" placeholder="(opcional)"></div>
+                <input type="text" class="form-control" name="celular"></div>
             </div>
-            <div class="form-group row"><label for="facebook" class="col-2 col-form-label">Facebook</label>
+            <div class="form-group row">
+              <label for="facebook" class="col-2 col-form-label">Facebook</label>
               <div class="col-10">
-                <input type="text" class="form-control" name="facebook" placeholder="(opcional)"></div>
+                <input type="text" class="form-control" name="facebook"></div>
             </div>
-            <div class="form-group row"><label for="endereco" class="col-2 col-form-label">Endereço</label>
+            <div class="form-group row">
+              <label for="endereco" class="col-2 col-form-label">Endereço</label>
               <div class="col-10">
-                <input type="text" class="form-control" name="endereco" placeholder="(obrigatório)" required></div>
+                <input type="text" class="form-control" name="endereco" required></div>
             </div>
-            <div class="form-group row"><label for="descricao" class="col-2 col-form-label">Descrição</label>
+            <div class="form-group row">
+              <label for="descricao" class="col-2 col-form-label">Descrição</label>
               <div class="col-10">
-                <textarea type="text" cols="5" rows="5" class="form-control" id="inputestabelecimento" placeholder="Digite uma pequena descrição do estabelecimento"></textarea>
+                <textarea type="text" cols="5" rows="5" class="form-control" id="inputestabelecimento" placeholder="Escreva um pouco sobre o estabelecimento" name="descricao"></textarea>
               </div>
+            </div>
+            <div class="form-group row" style="padding-left: 60px;">
+              <label class="input-group-text" for="inputCategorias">Categorias</label>
+              <select class="form-select" id="inputGroupSelect01">
+                <option selected>Escolha uma categoria</option>
+                <option value="Roupas">Roupas</option>
+                <option value="Tecnologia">Tecnologia</option>
+                <option value="Alimentos">Alimentos</option>
+                <option value="Livros">Livros</option>
+                <option value="Diversos">Diversos</option>
+                <option value="Restaurantes">Restaurantes</option>
+              </select>
             </div>
             <button type="submit" class="btn btn-primary">Cadastrar</button>
           </form>

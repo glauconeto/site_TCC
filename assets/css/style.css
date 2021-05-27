@@ -1,11 +1,16 @@
 footer {
-    margin-top: 40px;
+    margin: 0px auto -5px auto;
+    height: 212px;
 }
 
 h5#card-title-category {
     text-align: center; 
     margin-top: 107px; 
     position: sticky;
+}
+
+div.img-grid {
+    padding-top: 10px;
 }
 
 div#my-card {

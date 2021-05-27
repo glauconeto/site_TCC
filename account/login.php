@@ -6,7 +6,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     exit;
 }
 
-require_once 'includes/config.php';
+require_once '../includes/config.php';
 
 $username = $password = '';
 $username_err = $password_err = $login_err = '';
@@ -70,8 +70,8 @@ $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(16));
 
 $title = 'Entrar';
 
-require_once 'includes/header.php';
+require_once '../includes/header.php';
 
-require_once 'templates/login.html';
+require_once '../templates/login.html';
 
-require_once 'includes/footer.html';
+require_once '../includes/footer.html';

@@ -1,3 +1,20 @@
 TODO:
     Criar página de login e registro. (Com edição de nome de usuário e senha)
     Implementar feature de favoritos
+    Implementar categorias
+    Conversar com o professor com relação a tabela de comerciante, podendo mudar para ser 
+    também o de usuário para que ele possa ser redirecionado a um dashboard com 
+    informações pessoas para serem editadas e informações acerca do próprio estabelecimento para que
+    possa ser vista, editada e removida. 
+
+categoria.php?id=
+
+<?php
+
+require_once 'process_place.php';
+                    
+if(empty($erro)) {?>
+    <div class="alert alert-success" role="alert">Sucesso!</div>
+<?php } else { ?>
+    <div class="alert alert-alert" role="alert">Erro ao Registrar seu comércio, tente novamente depois</div>
+<?php } ?>
