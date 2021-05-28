@@ -85,7 +85,6 @@ require_once 'includes/header.php';
         <div class="row">
             <div class="col-12">
                 <h2>Categorias</h2>
-                <hr class="mb-4">
             </div>
         </div>
 

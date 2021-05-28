@@ -11,7 +11,7 @@
     <meta name="keywords" content="pandemia comercios ecommerce">
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <nav class="navbar navbar-custom navbar-expand-md navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="../index.php">
                 <i class="fa d-inline fa-lg fa-stop-circle"></i>
