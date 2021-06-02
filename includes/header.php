@@ -27,7 +27,7 @@
                     </li>
                     <li class="nav-item">
                         <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
-                            <li><a href="account/dashboard.php">Olá <?php echo htmlspecialchars($_SESSION["username"]); ?></a></li>
+                            <li><a href="account/favoritos.php">Olá <?php echo htmlspecialchars($_SESSION["username"]); ?></a></li>
                             <a href="account/logout.php" class="nav-link">Sair</a>
                         <?php else:
                                 echo '<a href="account/login.php" class="nav-link">Entrar</a>';
@@ -36,7 +36,7 @@
                     <li class="nav-item">
                         <form class="form-inline" action="pesquisa.php" method="post">
                             <input class="form-control mr-sm-2" type="text" placeholder="Procure">
-                            <button class="btn btn-outline-success" type="submit">Search</button>
+                            <button class="btn btn-success" type="submit">Search</button>
                         </form>
                     </li>
                 </ul>

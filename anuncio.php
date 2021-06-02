@@ -8,7 +8,7 @@ require_once 'includes/header.php';
         <div class="container">
             <div class="row">
                 <div class="mx-auto col-lg-8 col-md-10">
-                    <h1 class="display-3 mb-4">Pepperoni Fornalha</h1>
+                    <h1 class="display-3 mb-4"></h1>
                     <p class="lead mb-5">A Peperoni a melhor em qualidade e sabor na região Oferecemos amplo cardápio de pizzas, calzones, lasanhas, e porções. Aceitamos encomendas para eventos pequenos e aniversário.</p>
 					<button class="btn btn-warning" type="submit">Favoritar</button>
                 </div>

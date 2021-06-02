@@ -46,20 +46,23 @@ require_once 'includes/header.php';
             require_once "includes/config.php";
 
             // Atente-se a execução da query preparada
-            $stmt = $pdo->prepare('SELECT * FROM comercio');
-            $stmt->execute();
-            $result = $stmt->fetchAll();
+            $sql = "select * from comercio";
+            $result = mysqli_query($bd,$sql);
+            $num_results = mysqli_num_rows($result);
 
+            
             if ($result) {
                 if (count($result) > 0) {
                     foreach ($result as $comercio) {
                         echo '<div class="col-md-4">';
-                            echo '<div class="card">';
-                                echo '<div class="card-img-overlay align-items-center d-flex">';
-                                    echo '<h4><a class="card-link" href="anuncio.php?id='. $comercio['id_comercio'].'">'.$comercio["nome_comercio"].'</a>';
+                        echo '<div class="card">';
+                        echo '<div class="card-img-overlay align-items-center d-flex">';
+
+                        $vitrine = "uploads/". $comercio['nome_comercio']. '-vitrine.png';
+                        echo '<h4><a class="card-link" href="anuncio.php?id='. $comercio['id_comercio'].'">'. $vitrine.'</a>';
                                     echo '</h4>';
                                 echo '</div>';
-                            echo '<img class="img-fluid w-100 rounded" src="assets/images/pizza/frente-pizzaria.jpg" alt="Imagem comercio">';
+                                echo '<img class="img-fluid w-100 rounded" src="' .$vitrine. '"/>';
                             echo '<div class="card-body">';
                                 echo '<h4 class="card-title">'. $comercio["categoria"]. '</h4>';
                             echo '</div>';
@@ -75,7 +78,7 @@ require_once 'includes/header.php';
             }
 
             // Fecha a conexão
-            unset($pdo);
+            mysqli_close($bd);
             ?>
             
             </div>
@@ -92,7 +95,15 @@ require_once 'includes/header.php';
             <div class="card" style="width: 35rem;">
                 <div class="card-body">
                     <figure class="figure">
-                        <img src="assets/images/categorias/roupas.jpg" class="figure-img img-fluid rounded" alt="categoria-roupas">
+                        <img src="assets/images/categorias/restaurantes.jpg" class="figure-img img-fluid rounded" alt="Categoria Roupas">
+                    </figure>
+                    <a href="#" class="btn btn-primary">Restaurantes</a>
+                </div>
+            </div>
+            <div class="card" style="width: 35rem;">
+                <div class="card-body">
+                    <figure class="figure">
+                        <img src="assets/images/categorias/hortifruti.jpg" class="figure-img img-fluid rounded" alt="Categoria Alimentos">
                     </figure>
                     <a href="#" class="btn btn-primary">Alimentos</a>
                 </div>
@@ -100,46 +111,34 @@ require_once 'includes/header.php';
             <div class="card" style="width: 35rem;">
                 <div class="card-body">
                     <figure class="figure">
-                        <img src="assets/images/categorias/hortifruti.jpg" class="figure-img img-fluid rounded" alt="">
-                        <figcaption class="figure-caption text-right">A caption for the above image.</figcaption>
+                        <img src="assets/images/categorias/livros.jpg" class="figure-img img-fluid rounded" alt="Categoria Livros">
+                        
                     </figure>
-                    <a href="#" class="btn btn-primary">Alimentos</a>
+                    <a href="" class="btn btn-primary">Livros</a>
                 </div>
             </div>
             <div class="card" style="width: 35rem;">
                 <div class="card-body">
                     <figure class="figure">
-                        <img src="assets/images/categorias/hortifruti.jpg" class="figure-img img-fluid rounded" alt="">
-                        <figcaption class="figure-caption text-right">A caption for the above image.</figcaption>
+                        <img src="assets/images/categorias/restaurantes.jpg" class="figure-img img-fluid rounded" alt="Categoria restaurantes">
                     </figure>
-                    <a href="" class="btn btn-primary">Alimentos</a>
+                    <a href="#" class="btn btn-primary">Restaurantes</a>
                 </div>
             </div>
             <div class="card" style="width: 35rem;">
                 <div class="card-body">
                     <figure class="figure">
-                        <img src="assets/images/categorias/hortifruti.jpg" class="figure-img img-fluid rounded" alt="">
-                        <figcaption class="figure-caption text-right">A caption for the above image.</figcaption>
+                        <img src="assets/images/categorias/roupas.jpg" class="figure-img img-fluid rounded" alt="Categoria Roupas">
                     </figure>
-                    <a href="#" class="btn btn-primary">Alimentos</a>
+                    <a href="#" class="btn btn-primary">Roupas</a>
                 </div>
             </div>
             <div class="card" style="width: 35rem;">
                 <div class="card-body">
                     <figure class="figure">
-                        <img src="assets/images/categorias/hortifruti.jpg" class="figure-img img-fluid rounded" alt="">
-                        <figcaption class="figure-caption text-right">A caption for the above image.</figcaption>
+                        <img src="assets/images/categorias/tecnologia.jpg" class="figure-img img-fluid rounded" alt="Categoria Tecnologia">
                     </figure>
-                    <a href="#" class="btn btn-primary">Alimentos</a>
-                </div>
-            </div>
-            <div class="card" style="width: 35rem;">
-                <div class="card-body">
-                    <figure class="figure">
-                        <img src="assets/images/categorias/hortifruti.jpg" class="figure-img img-fluid rounded" alt="">
-                        <figcaption class="figure-caption text-right">A caption for the above image.</figcaption>
-                    </figure>
-                    <a href="#" class="btn btn-primary">Alimentos</a>
+                    <a href="#" class="btn btn-primary">Tecnologia</a>
                 </div>
             </div>
         </div>
