@@ -1,6 +1,9 @@
 <?php 
 
-require_once 'includes/config.php';
+require_once('db/connection.php');
+require_once('db/database.php');
+
+$link = DBConnect();
 
 // A pasta de upload terá o mesmo nome que o comércio
 // Os arquivos serão: nome_comercio_1, nome_comercio_2...
@@ -8,16 +11,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   // Faz a criação das variáveis com os valores vindos do formulário 
   // de cadastro
   if (!empty($_POST)) {
-    // $nomePessoa = trim($_POST['nameperson']);
-    // $email = trim($_POST['email']);
-    // $cnpj = trim($_POST['cnpj']);
+    $nomePessoa = trim($_POST['nameperson']);
+    $email = trim($_POST['email']);
+    $cnpj = trim($_POST['cnpj']);
     $nomeEstabelecimento =  trim($_POST['nameplace']);
-    // $fone = trim($_POST['telefone']);
-    // $celular = trim($_POST['celular']);
-    // $facebook = trim($_POST['facebook']);
-    // $endereco = trim($_POST['endereco']);
-    // $descricao = trim($_POST['descricao']);
-    // $categoria = trim($_POST['select_categoria']);
+    $fone = trim($_POST['telefone']);
+    $celular = trim($_POST['celular']);
+    $facebook = trim($_POST['facebook']);
+    $endereco = trim($_POST['endereco']);
+    $descricao = trim($_POST['descricao']);
+    $categoria = trim($_POST['select_categoria']);
     
     if ($cnpj > 14) {
       $mensagem = '<div class="alert alert-danger" role="alert">CNPJ é muito grande!</div>';
@@ -54,19 +57,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     
     // Insere na tabela comércio
-    // $sql = "INSERT INTO comercio (nome_comercio, endereco, telefone, facebook, celular, descricao, categoria, vitrine, imagem_1, imagem_2, imagem_3) VALUES ('$nomeEstabelecimento', '$endereco', '$fone', '$facebook', '$celular', '$descricao', '$categoria')";
-    // $result = mysqli_query($bd, $sql);
+    $sql = "INSERT INTO comercio (nome_comercio, endereco, telefone, facebook, celular, descricao, categoria, vitrine, imagem_1, imagem_2, imagem_3) VALUES ('$nomeEstabelecimento', '$endereco', '$fone', '$facebook', '$celular', '$descricao', '$categoria')";
+    $result = DBExecute($sql);
 
     // // Insere na tabela comerciante
-    // $query = "INSERT INTO comerciante (nome_comerciante, email, CNPJ) VALUES ('$nomePessoa', '$email', '$cnpj')";
-    // $result = mysqli_query($bd, $query);
-    // if ($result) {
-    //   header("Location: index.php?registro_com_sucesso"); 
-    // } else {
-    //   echo '<div>Ops, houve um erro: '. mysqli_error($bd).'</div>';
-    // }
+    $query = "INSERT INTO comerciante (nome_comerciante, email, CNPJ) VALUES ('$nomePessoa', '$email', '$cnpj')";
+    $result = DBExecute($query);
+    if ($result) {
+      header("Location: index.php?registro_com_sucesso"); 
+    } else {
+      echo '<div>Ops, houve um erro: '. mysqli_error($bd).'</div>';
+    }
 
-    // mysqli_close($bd);
+    DBClose($link);
   }
 }
 

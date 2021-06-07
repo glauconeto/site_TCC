@@ -43,16 +43,17 @@ require_once 'includes/header.php';
             <!-- Adaptar para o banco de dados para cada comércio -->
             <?php
             // Inclui arquivo de configuração e conexão do bd
-            require_once "includes/config.php";
+            include("db/connection.php");
+            include('db/database.php');
+
+            $link = DBConnect();
 
             // Atente-se a execução da query preparada
-            $sql = "select * from comercio";
-            $result = mysqli_query($bd,$sql);
+            $sql = "SELECT * FROM comercio";
+            $result = DBExecute($sql);
             $num_results = mysqli_num_rows($result);
-
             
-            if ($result) {
-                if (count($result) > 0) {
+            if ($num_results > 0) {
                     foreach ($result as $comercio) {
                         echo '<div class="col-md-4">';
                         echo '<div class="card">';
@@ -64,23 +65,19 @@ require_once 'includes/header.php';
                                 echo '</div>';
                                 echo '<img class="img-fluid w-100 rounded" src="' .$vitrine. '"/>';
                             echo '<div class="card-body">';
-                                echo '<h4 class="card-title">'. $comercio["categoria"]. '</h4>';
+                                echo '<h4 class="card-title">'. $comercio['categoria']. '</h4>';
                             echo '</div>';
                             echo '</div>';
                         echo '</div>';
                     }
                     unset($result);
-                } else {
-                    echo '<div class="alert alert-danger"><em>Sem registros encontrados</em></div>';
-                }
             } else {
-                echo "OPA! Algo de errado aconteceu, tente novamente depois";
+                echo '<div class="alert alert-danger"><em>Sem registros encontrados</em></div>';
             }
 
             // Fecha a conexão
-            mysqli_close($bd);
+            DBClose($link);
             ?>
-            
             </div>
         </div>
     </div>

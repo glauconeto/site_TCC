@@ -9,7 +9,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 }
  
 // Inclui o arquivo de configuração
-require_once 'includes/config.php';
+require_once '../db/connection.php';
  
 // Define variáveis e inicializa com valores vazios
 $new_password = $confirm_password = '';
@@ -21,8 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Valida nova senha
     if (empty(trim($_POST['new_password']))) {
         $new_password_err = 'Por favor digite a nova senha';
-    } elseif (strlen(trim($_POST['new_password'])) < 6) {
-        $new_password_err = 'Senha tem que ter no mínimo 6 caracteres';
+    } elseif (strlen(trim($_POST['new_password'])) < 8) {
+        $new_password_err = 'Senha tem que ter no mínimo 8 caracteres';
     } else{
         $new_password = trim($_POST['new_password']);
     }
