@@ -1,73 +1,72 @@
 <?php
-// Inicializa a sessão
+// Initialize the session
 session_start();
  
-// Checa se o usuário esta logado, se sim redireciona para a página de login
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header('location: index.php');
+// Check if the user is logged in, otherwise redirect to login page
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: login.php");
     exit;
 }
  
-// Inclui o arquivo de configuração
-require_once '../db/connection.php';
+// Include config file
+require_once "config.php";
  
-// Define variáveis e inicializa com valores vazios
-$new_password = $confirm_password = '';
-$new_password_err = $confirm_password_err = '';
+// Define variables and initialize with empty values
+$new_password = $confirm_password = "";
+$new_password_err = $confirm_password_err = "";
  
-// Processa dados do formulário quando é submetido
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST"){
  
-    // Valida nova senha
-    if (empty(trim($_POST['new_password']))) {
-        $new_password_err = 'Por favor digite a nova senha';
-    } elseif (strlen(trim($_POST['new_password'])) < 8) {
-        $new_password_err = 'Senha tem que ter no mínimo 8 caracteres';
+    // Validate new password
+    if(empty(trim($_POST["new_password"]))){
+        $new_password_err = "Please enter the new password.";     
+    } elseif(strlen(trim($_POST["new_password"])) < 6){
+        $new_password_err = "Password must have atleast 6 characters.";
     } else{
-        $new_password = trim($_POST['new_password']);
+        $new_password = trim($_POST["new_password"]);
     }
     
-    // Valida a confirmação de senha
-    if (empty(trim($_POST['confirm_password']))) {
-        $confirm_password_err = 'Por favor confirme a senha';
+    // Validate confirm password
+    if(empty(trim($_POST["confirm_password"]))){
+        $confirm_password_err = "Please confirm the password.";
     } else{
-        $confirm_password = trim($_POST['confirm_password']);
-        if (empty($new_password_err) && ($new_password != $confirm_password)) {
-            $confirm_password_err = 'Senha não confere';
+        $confirm_password = trim($_POST["confirm_password"]);
+        if(empty($new_password_err) && ($new_password != $confirm_password)){
+            $confirm_password_err = "Password did not match.";
         }
     }
         
-    // Checa erros de entrada antes de atualizar a base de dados
-    if (empty($new_password_err) && empty($confirm_password_err)) {
-        // Prepara uma declaração de atualização
-        $sql = 'UPDATE users SET password = :password WHERE id = :id';
+    // Check input errors before updating the database
+    if(empty($new_password_err) && empty($confirm_password_err)){
+        // Prepare an update statement
+        $sql = "UPDATE users SET password = ? WHERE id = ?";
         
-        if ($stmt = $pdo->prepare($sql)) {
-            // Vincula variáveis à instrução preparada como parâmetros
-            $stmt->bindParam(':password', $param_password, PDO::PARAM_STR);
-            $stmt->bindParam(':id', $param_id, PDO::PARAM_INT);
+        if($stmt = mysqli_prepare($link, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "si", $param_password, $param_id);
             
-            // Define parâmetros
+            // Set parameters
             $param_password = password_hash($new_password, PASSWORD_DEFAULT);
-            $param_id = $_SESSION['id'];
+            $param_id = $_SESSION["id"];
             
-            // Atente-se a executar a declaração preparada
-            if ($stmt->execute()) {
-                // Senha atualizada com sucesso. Destrói a sessão, e redireciona para a sessão de login
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                // Password updated successfully. Destroy the session, and redirect to login page
                 session_destroy();
-                header('location: index.php');
+                header("location: login.php");
                 exit();
-            } else {
-                echo 'OPA! Algo de errado aconteceu, tente novamente depois';
+            } else{
+                echo "Oops! Something went wrong. Please try again later.";
             }
 
-            // Fecha declaração
-            unset($stmt);
+            // Close statement
+            mysqli_stmt_close($stmt);
         }
     }
     
-    // Fecha conexão
-    unset($pdo);
+    // Close connection
+    mysqli_close($link);
 }
 
 $title = 'Redefinição de Senha';

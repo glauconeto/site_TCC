@@ -21,12 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $endereco = trim($_POST['endereco']);
     $descricao = trim($_POST['descricao']);
     $categoria = trim($_POST['select_categoria']);
+
+    $cnpj = preg_replace("/[^0-9]/", "", $cnpj);
     
-    if ($cnpj > 14) {
-      $mensagem = '<div class="alert alert-danger" role="alert">CNPJ é muito grande!</div>';
-    }
     $fone = preg_replace("/[^0-9]/", "", $fone);
     $celular = preg_replace("/[^0-9]/", "", $celular);
+
     // Valida o e-mail
     $email = filter_var($email, FILTER_SANITIZE_EMAIL);
     $dir = './uploads/';
@@ -42,9 +42,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       }
     }
 
-    // diretório para salvar as imagens
+    // Diretório para salvar as imagens.
     $arquivo = isset($_FILES['arquivo']) ? $_FILES['arquivo'] : FALSE;
-    // loop para ler as imagens
+    // Loop para ler as imagens.
     for($controle = 0; $controle < count($arquivo['name']); $controle++) {
       $nome = $arquivo['name'];
       $extensao = pathinfo($_FILES['arquivo']['name'][$controle], PATHINFO_EXTENSION);
@@ -55,18 +55,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       
       move_uploaded_file($arquivo['tmp_name'][$controle], $destino);
     }
+    // Insere na tabela comerciante
+    $query = "INSERT INTO comerciante (nome_comerciante, email, CNPJ) VALUES ('$nomePessoa', '$email', '$cnpj')";
+
+    mysqli_query($link, $query);
+    
+    $last_id = mysqli_insert_id($link);
+    
+    $result = DBExecute($query);
+
     
     // Insere na tabela comércio
-    $sql = "INSERT INTO comercio (nome_comercio, endereco, telefone, facebook, celular, descricao, categoria, vitrine, imagem_1, imagem_2, imagem_3) VALUES ('$nomeEstabelecimento', '$endereco', '$fone', '$facebook', '$celular', '$descricao', '$categoria')";
+    $sql = "INSERT INTO comercio (nome_comercio, endereco, telefone, facebook, celular, descricao, categoria, id_comerciante) VALUES ('$nomeEstabelecimento', '$endereco', '$fone', '$facebook', '$celular', '$descricao', '$categoria', '$last_id')";
     $result = DBExecute($sql);
 
-    // // Insere na tabela comerciante
-    $query = "INSERT INTO comerciante (nome_comerciante, email, CNPJ) VALUES ('$nomePessoa', '$email', '$cnpj')";
-    $result = DBExecute($query);
     if ($result) {
       header("Location: index.php?registro_com_sucesso"); 
     } else {
-      echo '<div>Ops, houve um erro: '. mysqli_error($bd).'</div>';
+      echo '<div>Ops, houve um erro: '. mysqli_error($link).'</div>';
     }
 
     DBClose($link);
@@ -111,7 +117,7 @@ require_once 'includes/header.php';
             <div class="form-group row">
               <label for="cnpj" class="col-2 col-form-label">CNPJ</label>
               <div class="col-10">
-                <input type="text" class="form-control" name="cnpj" ></div>
+                <input type="text" class="form-control" onkeypress="$(this).mask('00.000.000/0000-00')" name="cnpj" ></div>
             </div>
             <div class="form-group row">
               <label for="nameestabelecimento" class="col-2 col-form-label">Nome do Estabelecimento</label>
@@ -121,12 +127,12 @@ require_once 'includes/header.php';
             <div class="form-group row">
               <label for="whatsapp" class="col-2 col-form-label">Telefone</label>
               <div class="col-10">
-                <input type="text" class="form-control" name="telefone" ></div>
+                <input type="text" class="form-control" onkeypress="$(this).mask('(00) 0000-00009')" name="telefone" ></div>
             </div>
             <div class="form-group row">
               <label for="endereco" class="col-2 col-form-label">Celular</label>
               <div class="col-10">
-                <input type="text" class="form-control" name="celular"></div>
+                <input type="text" class="form-control" onkeypress="$(this).mask('(00) 0 0000-00009')" name="celular"></div>
             </div>
             <div class="form-group row">
               <label for="facebook" class="col-2 col-form-label">Facebook</label>

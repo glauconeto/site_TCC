@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <form action="" method="POST">
+                <form action="" method="post">
                     <h1><i class="fa fa-user" aria-hidden="true"></i></h1>
                     <h1 class="h3 mb-3 fw-normal">Registro</h1>
                     <div class="form-group">
@@ -17,9 +17,9 @@
                         <span class="invalid-feedback"><?php echo $username_err; ?></span>
                     </div>    
                     <div class="form-group">
-                            <label>Senha</label>
-                            <input type="password" name="password" id="floatingInput" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>" style="width: 500px;left: 450px;position: sticky;">
-                            <span class="invalid-feedback"><?php echo $password_err; ?></span>
+                        <label>Password</label>
+                        <input type="password" name="password" id="floatingInput" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
+                        <span class="invalid-feedback"><?php echo $password_err; ?></span>
                     </div>
                     <div class="form-group">
                         <label>Confirmar senha</label>

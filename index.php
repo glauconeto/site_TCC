@@ -43,8 +43,8 @@ require_once 'includes/header.php';
             <!-- Adaptar para o banco de dados para cada comércio -->
             <?php
             // Inclui arquivo de configuração e conexão do bd
-            include("db/connection.php");
-            include('db/database.php');
+            include 'db/connection.php';
+            include 'db/database.php';
 
             $link = DBConnect();
 
@@ -60,7 +60,7 @@ require_once 'includes/header.php';
                         echo '<div class="card-img-overlay align-items-center d-flex">';
 
                         $vitrine = "uploads/". $comercio['nome_comercio']. '-vitrine.png';
-                        echo '<h4><a class="card-link" href="anuncio.php?id='. $comercio['id_comercio'].'">'. $vitrine.'</a>';
+                        echo '<h4><a class="card-link" href="anuncio.php?id='. $comercio['id_comercio'].'">'. $comercio['nome_comercio'].'</a>';
                                     echo '</h4>';
                                 echo '</div>';
                                 echo '<img class="img-fluid w-100 rounded" src="' .$vitrine. '"/>';
