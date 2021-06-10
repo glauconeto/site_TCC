@@ -21,7 +21,7 @@ if($num_results > 0) {
   foreach ($result as $comercio) {
     $vitrine = "uploads/". $comercio['nome_comercio']. '-vitrine.png';
 ?>
-    <div class="py-5 text-center text-white h-100 align-items-center d-flex" style="background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('<?php echo $vitrine ?>'); background-position: center center, center center; background-size: cover, cover; background-repeat: repeat, repeat;" alt="frente-pizzaria">
+    <div class="py-5 text-center text-white h-100 align-items-center d-flex" style="background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('<?php echo $vitrine ?>'); background-position: center center, center center; background-size: cover, cover; background-repeat: repeat, repeat;" alt="Vitrine Comercio">
         <div class="container">
             <div class="row">
                 <div class="mx-auto col-lg-8 col-md-10">
@@ -123,10 +123,6 @@ if($num_results > 0) {
 <?php 
 
   }
-}
-
-if(isset($_GET['favoritar'])) {
-    echo 'Favoritei';
 }
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
