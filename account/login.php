@@ -9,11 +9,11 @@ $username_err = $password_err = $login_err = '';
 $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(16));
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-    header('location: favorite.php');
+    header('location: profile.php');
     exit;
 }
  
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['token'])) {
     // Check if username is empty
     if (empty(trim($_POST["username"]))) {
         $username_err = "Please enter username.";
@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $_SESSION["username"] = $username;                            
                             
                             // Redirect user to welcome page
-                            header("location: profile.php");
+                            header("location: favorites.php");
                         } else {
                             // Password is not valid, display a generic error message
                             $login_err = "Invalid username or password.";

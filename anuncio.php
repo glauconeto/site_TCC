@@ -16,6 +16,7 @@ DBClose($link);
 
 $title = 'Anúncio';
 require_once 'includes/header.php';
+
 if($num_results > 0) {
   foreach ($result as $comercio) {
     $vitrine = "uploads/". $comercio['nome_comercio']. '-vitrine.png';
@@ -27,7 +28,11 @@ if($num_results > 0) {
                     <h1 class="display-3 mb-4"></h1>
                     <h3><?php echo $comercio['nome_comercio'] ?></h3>
                     <p class="lead mb-5"><?php echo $comercio['descricao']; ?></p>
-                    <button class="btn btn-warning" type="submit">Favoritar</button>
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="GET">
+                      <button type="submit" name="favorite" value="<?php echo $comercio['id_comercio']?>" class="btn btn-lg btn-danger" data-toggle="popover" title="Favoritar" data-content="<?php echo (!empty($favorite_err)) ? 'is-invalid' : ''; ?>">
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                      </button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -44,8 +49,8 @@ if($num_results > 0) {
                             <img src="<?php echo $imagem1 ?>" class="d-block w-100" alt="Imagem 1">
                           </div>
                           <div class="carousel-item">
-                            <?php $imagem2 = 'uploads'. $comercio['nome_comercio']. '-2.png'?>
-                            <img src="<?php echo $imagem2 ?>" class="d-block w-100" alt="Imagem 2"
+                            <?php $imagem2 = 'uploads/'. $comercio['nome_comercio']. '-2.png'?>
+                            <img src="<?php echo $imagem2 ?>" class="d-block w-100" alt="Imagem 2">
                           </div>
                           <div class="carousel-item">
                           <?php $imagem3 = "uploads/". $comercio['nome_comercio']. '-3.png' ?>
@@ -87,7 +92,7 @@ if($num_results > 0) {
                     <td>
                         <h1>
                           <a href="https://facebook.com/<?php echo $comercio['facebook']; ?>" target="_blank" style="color: #e8f3ff;">
-                            <button class="btn btn-info">
+                            <button class="btn btn-info" data-toggle="popover" title="FaceBook">
                                     <i class="fa fa-facebook"></i>
                                   </button>
                           </a>
@@ -98,8 +103,8 @@ if($num_results > 0) {
                     <th scope="row">Celular (Whatsapp)</th>
                     <td>
                         <h1>
-                          <a href="https://api.whatsapp.com/send?phone=<?php echo $comercio['celular']; ?>" target="_blank" style="color: #e8f3ff;">
-                            <button class="btn btn-info">
+                          <a href="https://api.whatsapp.com/send?phone=+55<?php echo $comercio['celular']; ?>" target="_blank" style="color: #e8f3ff;">
+                            <button class="btn btn-info" data-toggle="popover" title="WhatsApp">
                                 <i class="fa fa-whatsapp"></i>
                               </button>
                             </a>
@@ -110,7 +115,7 @@ if($num_results > 0) {
             </table>
             <h1>Endereço</h1>            
             <p style="padding-top: 10px;">
-                <a href="https://www.google.com/maps/search/?api=+55<?php echo $comercio['endereco']?>" target="_blank"><?php echo $comercio['endereco']?></a>
+                <a href="https://www.google.com/maps/search/?api=<?php echo $comercio['endereco']?>" target="_blank"><?php echo $comercio['endereco']?></a>
             </p>
             </div>
         </div>
@@ -120,4 +125,41 @@ if($num_results > 0) {
   }
 }
 
-require_once 'includes/footer.html' ?>
+if(isset($_GET['favoritar'])) {
+    echo 'Favoritei';
+}
+
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+    $id_user = $_SESSION['id'];
+    $id_commerce = $_GET['id'];
+
+    $sql = "SELECT id_comercio FROM favorito WHERE id_usuario = ?";
+
+    if ($stmt = mysqli_prepare($link, $sql)) {
+        mysqli_stmt_bind_param($stmt, 's', $param_favorite);
+        $param_id_user = trim($id_user);
+
+        if (mysqli_stmt_execute($stmt)) {
+            mysqli_stmt_store_result($stmt);
+
+            if ($mysqi_stmt_num_rows($stmt) == 1) {
+                $favorite_err = 'Esse comércio já esta nos seus favoritos.';
+            } else {
+                $sql = 'INSERT INTO favorito id_usuario, id_comercio VALUES (?, ?)';
+
+                mysqli_stmt_bind_param($stmt, "ss", $id_user, $id_commerce);
+
+                if (mysqli_stmt_execute($stmt)) {
+                  header('location: account/favorites.php?favoritado_com_sucesso');
+                } else {
+                  echo mysqli_error($link);
+                }
+            }
+        }
+    }    
+} else {
+    header('location: account/login.php?login_necessario');
+    exit;
+}
+
+require_once 'includes/footer.html';

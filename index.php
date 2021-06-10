@@ -1,4 +1,5 @@
 <?php
+session_start();
 $title = 'Início';
 require_once 'includes/header.php';
 

@@ -27,17 +27,16 @@
                     </li>
                     <li class="nav-item">
                         <?php
-                            session_start();
                             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
-                            <li><a href="../account/profile.php" class="nav-link">Meu perfil</a></li>
+                            <li><a href="../account/favorites.php" class="nav-link">Meus favoritos</a></li>
                             <li><a href="../account/logout.php" class="nav-link">Sair</a></li>
                         <?php else:
                                 echo '<a href="../account/login.php" class="nav-link">Entrar</a>';
             	        endif; ?>
                     </li>
                     <li class="nav-item">
-                        <form class="form-inline" action="search.php" method="post">
-                            <input class="form-control mr-sm-2" type="text" placeholder="Procure">
+                        <form class="form-inline" action="../search.php" method="post">
+                            <input class="form-control mr-sm-2" name="search" type="text" placeholder="Procure">
                             <button class="btn btn-success" type="submit">Search</button>
                         </form>
                     </li>
