@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['token'])) {
                             $_SESSION["username"] = $username;                            
                             
                             // Redirect user to welcome page
-                            header("location: favorites.php");
+                            header("location: ../index.php");
                         } else {
                             // Password is not valid, display a generic error message
                             $login_err = "Invalid username or password.";

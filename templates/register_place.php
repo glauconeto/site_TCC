@@ -31,7 +31,7 @@
               <div class="form-group row">
                 <label for="cnpj" class="col-2 col-form-label">CNPJ</label>
                 <div class="col-10">
-                  <input type="text" class="form-control" onkeypress="$(this).mask('00.000.000/0000-00')" name="cnpj" ></div>
+                  <input type="text" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" onkeypress="$(this).mask('00.000.000/0000-00')" name="cnpj" ></div>
               </div>
               <div class="form-group row">
                 <label for="nameestabelecimento" class="col-2 col-form-label">Nome do Estabelecimento</label>
@@ -69,6 +69,7 @@
                   <input class="<?php echo (!empty($upload_err)) ? 'is-invalid' : ''; ?>" type="file" name="vitrine">
               </div>
               <div class="for-group row">
+                <label for="arquivo">Imagens para galeria</label>
                 <input type="file" class="<?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" name="arquivo[]" multiple="multiple" /><br><br>
               </div>
               <div class="form-group row" style="padding-left: 60px;">

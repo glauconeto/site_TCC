@@ -1,6 +1,7 @@
 <?php
-session_start();
+
 $title = 'Início';
+
 require_once 'includes/header.php';
 
 ?>
@@ -41,9 +42,8 @@ require_once 'includes/header.php';
                 </div>
             </div>
             <div class="row">
-            <!-- Adaptar para o banco de dados para cada comércio -->
             <?php
-            // Inclui arquivo de configuração e conexão do bd
+            // Inclui arquivo de configuração e conexão do db
             include 'db/connection.php';
             include 'db/database.php';
 

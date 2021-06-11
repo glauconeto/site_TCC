@@ -13,7 +13,6 @@ $num_results = mysqli_num_rows($result);
 
 DBClose($link);
 
-
 $title = 'Anúncio';
 require_once 'includes/header.php';
 
@@ -27,7 +26,7 @@ if($num_results > 0) {
                 <div class="mx-auto col-lg-8 col-md-10">
                     <h1 class="display-3 mb-4"></h1>
                     <h3><?php echo $comercio['nome_comercio'] ?></h3>
-                    <p class="lead mb-5"><?php echo $comercio['descricao']; ?></p>
+                    <p class="lead mb-5"><?php echo $comercio['descricao'] ?></p>
                     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="GET">
                       <button type="submit" name="favorite" value="<?php echo $comercio['id_comercio']?>" class="btn btn-lg btn-danger" data-toggle="popover" title="Favoritar" data-content="<?php echo (!empty($favorite_err)) ? 'is-invalid' : ''; ?>">
                         <i class="fa fa-heart" aria-hidden="true"></i>
@@ -117,45 +116,56 @@ if($num_results > 0) {
             <p style="padding-top: 10px;">
                 <a href="https://www.google.com/maps/search/?api=<?php echo $comercio['endereco']?>" target="_blank"><?php echo $comercio['endereco']?></a>
             </p>
-            </div>
+          </div>
         </div>
-    </div>
-<?php 
-
+      </div>
+      <?php 
   }
 }
-
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-    $id_user = $_SESSION['id'];
-    $id_commerce = $_GET['id'];
-
-    $sql = "SELECT id_comercio FROM favorito WHERE id_usuario = ?";
-
-    if ($stmt = mysqli_prepare($link, $sql)) {
-        mysqli_stmt_bind_param($stmt, 's', $param_favorite);
-        $param_id_user = trim($id_user);
-
-        if (mysqli_stmt_execute($stmt)) {
-            mysqli_stmt_store_result($stmt);
-
-            if ($mysqi_stmt_num_rows($stmt) == 1) {
-                $favorite_err = 'Esse comércio já esta nos seus favoritos.';
-            } else {
-                $sql = 'INSERT INTO favorito id_usuario, id_comercio VALUES (?, ?)';
-
-                mysqli_stmt_bind_param($stmt, "ss", $id_user, $id_commerce);
-
-                if (mysqli_stmt_execute($stmt)) {
-                  header('location: account/favorites.php?favoritado_com_sucesso');
-                } else {
-                  echo mysqli_error($link);
-                }
-            }
-        }
-    }    
-} else {
-    header('location: account/login.php?login_necessario');
-    exit;
-}
-
 require_once 'includes/footer.html';
+
+$link = DBConnect();
+
+
+if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_GET['favorite'])) {
+  $id_user = $_SESSION['id'];
+  $id_comercio = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+  $link = DBConnect();
+
+  $sql = "SELECT id_comercio FROM favorito WHERE id_usuario = ?";
+
+  if($stmt = mysqli_prepare($link, $sql)) {
+    mysqli_stmt_bind_param($stmt, 'i', $param_id);
+
+    $param_id = $id_comercio;
+
+    if (mysqli_stmt_execute($stmt)) {
+      mysqli_stmt_store_result($stmt);
+
+      if (mysqli_stmt_num_rows($stmt) == 1) {
+        $favorite_err = 'Esse comércio já está nos seus favoritos.';
+      } else {
+        $id = $id_comercio;
+      }
+    } else {
+      echo mysqli_error($link);
+    }
+  }
+  
+  $sql = 'INSERT INTO favorito (id_usuario, id_comercio) VALUES (?, ?)';
+
+  if($stmt = mysqli_prepare($link, $sql)) {
+    mysqli_stmt_bind_param($stmt, 'ii', $param_id_commerce, $param_id_user);
+
+    $param_id_commerce = $id_comercio;
+    $param_id_user = $id_user;
+
+    if(mysqli_stmt_execute($stmt)) {
+      header('Location: account/favorites.php');
+    }
+  }
+
+} else {
+  header('Location: account/login.php');
+  exit;
+}

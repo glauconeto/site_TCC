@@ -1,6 +1,29 @@
 <?php
 
 require_once 'config.php';
+require_once 'database.php';
+
+// Prevenção contra SQL Injection
+function DBEscape($dados) {
+    $link = DBConnect();
+
+    if(!is_array($dados)) {
+        $dados = mysqli_real_scape_string($link, $dados);
+    } else {
+        $array = $dados;
+
+        foreach($array as $key => $value) {
+            $key = mysqli_real_scape_string($link, $key);
+            $value = mysqli_real_scape_string($link, $value);
+
+            $dados[$key] = $value;
+        }
+    }
+
+    DBClose($link);
+
+    return $dados;
+}
 
 // Fecha conexão com o DB
 function DBClose($link){

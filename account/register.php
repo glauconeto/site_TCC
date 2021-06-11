@@ -7,14 +7,14 @@ require_once '../db/connection.php';
 $link = DBConnect();
 
 $username = $password = $email = $confirm_password = '';
-$username_err = $email_err = $password_err = $confirm_password_err = '';
+$username_err = $password_err = $confirm_password_err = '';
 
 $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(16));
 
 if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['token'])) {
     // Validate username
     if (empty(trim($_POST["username"]))) {
-        $username_err = "Please enter a username.";
+        $username_err = "Por favor digite um nome de usuário.";
     } elseif (!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"]))) {
         $username_err = "Username can only contain letters, numbers, and underscores.";
     } else {
@@ -81,19 +81,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['token'])) {
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
             
             // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
+            if (mysqli_stmt_execute($stmt)) {
                 // Redirect to login page
                 header("location: login.php");
             } else {
                 echo mysqli_error($link);
             }
 
-            // Close statement
+            // Fecha a declaração
             mysqli_stmt_close($stmt);
         }
     }
     
-    // Close connection
+    // Fecha a conexão
     DBClose($link);
 }
 

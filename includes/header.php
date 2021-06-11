@@ -27,7 +27,8 @@
                     </li>
                     <li class="nav-item">
                         <?php
-                            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
+                            session_start();
+                            if (isset($_SESSION['id']) && $_SESSION['loggedin'] === true): ?>
                             <li><a href="../account/favorites.php" class="nav-link">Meus favoritos</a></li>
                             <li><a href="../account/logout.php" class="nav-link">Sair</a></li>
                         <?php else:
