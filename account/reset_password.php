@@ -9,7 +9,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
  
 // Include config file
-require_once "config.php";
+require_once '../db/connection.php';
+
+$link = DBConnect();
  
 // Define variables and initialize with empty values
 $new_password = $confirm_password = "";
@@ -21,8 +23,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate new password
     if(empty(trim($_POST["new_password"]))){
         $new_password_err = "Please enter the new password.";     
-    } elseif(strlen(trim($_POST["new_password"])) < 6){
-        $new_password_err = "Password must have atleast 6 characters.";
+    } elseif(strlen(trim($_POST["new_password"])) < 8){
+        $new_password_err = "Password must have atleast 8 characters.";
     } else{
         $new_password = trim($_POST["new_password"]);
     }
@@ -66,13 +68,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Close connection
-    mysqli_close($link);
+    DBClose($link);
 }
 
 $title = 'Redefinição de Senha';
 
-require_once 'includes/header.html';
+require_once '../includes/header.php';
 
-require_once 'templates/reset_password.html';
+require_once '../templates/reset_password.html';
 
-require_once 'includes/footer.html';
+require_once '../includes/footer.html';

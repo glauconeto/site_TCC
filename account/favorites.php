@@ -19,8 +19,6 @@ require_once '../includes/header.php';
                 include '../db/connection.php';
                 include '../db/database.php';
 
-                // $id_usuario = $_SESSION['id'];
-
                 $link = DBConnect();
 
                 $sql = 'SELECT comercio.id_comercio, comercio.nome_comercio, comercio.categoria FROM favorito f INNER JOIN comercio ON comercio.id_comercio = f.id_comercio INNER JOIN usuario ON usuario.id_usuario = f.id_usuario';
@@ -30,27 +28,30 @@ require_once '../includes/header.php';
                 $result = DBExecute($sql);
                 $num_results = mysqli_num_rows($result);
 
-                if ($num_results > 0) {
-                    foreach ($result as $comercio) {
-                        echo '<div class="col-md-4">';
-                        echo '<div class="card">';
-                        echo '<div class="card-img-overlay align-items-center d-flex">';
-
-                        $vitrine = "../uploads/". $comercio['nome_comercio']. '-vitrine.png';
-                        echo '<h4><a class="card-link" href="../anuncio.php?id='. $comercio['id_comercio'].'">'. $comercio['nome_comercio'].'</a>';
-                                    echo '</h4>';
-                                echo '</div>';
-                                echo '<img class="img-fluid w-100 rounded" src="' .$vitrine. '"/>';
-                            echo '<div class="card-body">';
-                                echo '<h4 class="card-title">'. $comercio['categoria']. '</h4>';
-                            echo '</div>';
-                            echo '</div>';
-                        echo '</div>';
-                    }
-                    unset($result);
-                } else {
-                    echo '<div class="alert alert-danger"><em>Sem registros encontrados</em></div>';
-                }
+                if ($num_results > 0):
+                    foreach ($result as $comercio):?>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-img-overlay align-items-center d-flex">
+                                <?php $vitrine = "../uploads/". $comercio['nome_comercio']. "-vitrine.png"?>
+                                <h4>
+                                    <a class="card-link" href="../anuncio.php?id=<?= $comercio['id_comercio']?>">
+                                        <?= $comercio['nome_comercio']?>
+                                    </a>
+                                </h4>
+                            </div>
+                            <img class="img-fluid w-100 rounded" src="<?= $vitrine?>" />
+                            <div class="card-body">
+                                <h4 class="card-title"><?= $comercio['categoria']?></h4>
+                            </div>
+                        </div>
+                        <a class="btn btn-danger" href="unfavorite.php?id=<?= $comercio['id_comercio']?>" title="Desfavoritar"><span class="fa fa-times"></span></a>
+                    </div>
+                    <?php 
+                    endforeach;
+                else:?>
+                    <div class="alert alert-danger"><em>Sem favoritos encontrados</em></div>
+                <?php endif;
             ?>
         </div>
     </div>

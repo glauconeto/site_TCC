@@ -25,20 +25,19 @@
                     <li class="nav-item">
                         <a class="nav-link" href="../register_place.php">Sugerir estabelecimento</a>
                     </li>
-                    <li class="nav-item">
                         <?php
                             session_start();
                             if (isset($_SESSION['id']) && $_SESSION['loggedin'] === true): ?>
                             <li><a href="../account/favorites.php" class="nav-link">Meus favoritos</a></li>
+                            <li><a href="../account/reset_password.php" class="nav-link">Esqueci minha senha</a><li>
                             <li><a href="../account/logout.php" class="nav-link">Sair</a></li>
-                        <?php else:
-                                echo '<a href="../account/login.php" class="nav-link">Entrar</a>';
-            	        endif; ?>
-                    </li>
+                        <?php else:?>
+                                <li><a href="../account/login.php" class="nav-link">Entrar</a></li>
+            	        <?php endif; ?>
                     <li class="nav-item">
                         <form class="form-inline" action="../search.php" method="post">
                             <input class="form-control mr-sm-2" name="search" type="text" placeholder="Procure">
-                            <button class="btn btn-success" type="submit">Search</button>
+                            <button class="btn btn-success" type="submit">Procurar</button>
                         </form>
                     </li>
                 </ul>

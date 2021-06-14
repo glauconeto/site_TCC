@@ -96,7 +96,7 @@ require_once 'includes/header.php';
                     <figure class="figure">
                         <img src="assets/images/categorias/restaurantes.jpg" class="figure-img img-fluid rounded" alt="Categoria Roupas">
                     </figure>
-                    <a href="search.php?criterio=Restaurantes" class="btn btn-primary">Restaurantes</a>
+                    <a href="pesquisa.php?criterio=Restaurantes" class="btn btn-primary">Restaurantes</a>
                 </div>
             </div>
             <div class="card" style="width: 35rem;">
@@ -104,7 +104,7 @@ require_once 'includes/header.php';
                     <figure class="figure">
                         <img src="assets/images/categorias/hortifruti.jpg" class="figure-img img-fluid rounded" alt="Categoria Alimentos">
                     </figure>
-                    <a href="search.php?criterio=Alimentos" class="btn btn-primary">Alimentos</a>
+                    <a href="pesquisa.php?criterio=Alimentos" class="btn btn-primary">Alimentos</a>
                 </div>
             </div>
             <div class="card" style="width: 35rem;">
@@ -118,7 +118,7 @@ require_once 'includes/header.php';
             <div class="card" style="width: 35rem;">
                 <div class="card-body">
                     <figure class="figure">
-                        <img src="assets/images/categorias/diversos.jpg" class="figure-img img-fluid rounded" alt="Categoria restaurantes">
+                        <img src="assets/images/categorias/restaurantes.jpg" class="figure-img img-fluid rounded" alt="Categoria restaurantes">
                     </figure>
                     <a href="search.php?criterio=Diversos" class="btn btn-primary">Diversos</a>
                 </div>
