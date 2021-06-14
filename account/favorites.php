@@ -1,10 +1,6 @@
 <?php
 
-// JOIN
-// $sql = 'SELECT * FROM comercio JOIN'
-
 $title = 'Meus favoritos';
-
 require_once '../includes/header.php';
 
 ?>
@@ -27,7 +23,7 @@ require_once '../includes/header.php';
 
                 $link = DBConnect();
 
-                $sql = 'SELECT comercio.id_comercio, comercio.nome_comercio, comercio.categoria FROM favorito f INNER JOIN comercio ON comercio.id_comercio = f.id_comercio INNER JOIN usuario ON usuario.id_usuario = f.id_usuario ';
+                $sql = 'SELECT comercio.id_comercio, comercio.nome_comercio, comercio.categoria FROM favorito f INNER JOIN comercio ON comercio.id_comercio = f.id_comercio INNER JOIN usuario ON usuario.id_usuario = f.id_usuario';
 
                 DBExecute($sql);
 

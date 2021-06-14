@@ -8,13 +8,13 @@ function DBEscape($dados) {
     $link = DBConnect();
 
     if(!is_array($dados)) {
-        $dados = mysqli_real_scape_string($link, $dados);
+        $dados = mysqli_real_escape_string($link, $dados);
     } else {
         $array = $dados;
 
         foreach($array as $key => $value) {
-            $key = mysqli_real_scape_string($link, $key);
-            $value = mysqli_real_scape_string($link, $value);
+            $key = mysqli_real_escape_string($link, $key);
+            $value = mysqli_real_escape_string($link, $value);
 
             $dados[$key] = $value;
         }

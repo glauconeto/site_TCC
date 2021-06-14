@@ -44,14 +44,15 @@ require_once 'includes/header.php';
             <div class="row">
             <?php
             // Inclui arquivo de configuração e conexão do db
-            include 'db/connection.php';
-            include 'db/database.php';
+            require_once 'db/connection.php';
+            require_once 'db/database.php';
 
             $link = DBConnect();
 
             // Atente-se a execução da query preparada
             $sql = "SELECT * FROM comercio";
             $result = DBExecute($sql);
+
             $num_results = mysqli_num_rows($result);
             
             if ($num_results > 0) {
@@ -95,7 +96,7 @@ require_once 'includes/header.php';
                     <figure class="figure">
                         <img src="assets/images/categorias/restaurantes.jpg" class="figure-img img-fluid rounded" alt="Categoria Roupas">
                     </figure>
-                    <a href="#" class="btn btn-primary">Restaurantes</a>
+                    <a href="search.php?criterio=Restaurantes" class="btn btn-primary">Restaurantes</a>
                 </div>
             </div>
             <div class="card" style="width: 35rem;">
@@ -103,24 +104,23 @@ require_once 'includes/header.php';
                     <figure class="figure">
                         <img src="assets/images/categorias/hortifruti.jpg" class="figure-img img-fluid rounded" alt="Categoria Alimentos">
                     </figure>
-                    <a href="#" class="btn btn-primary">Alimentos</a>
+                    <a href="search.php?criterio=Alimentos" class="btn btn-primary">Alimentos</a>
                 </div>
             </div>
             <div class="card" style="width: 35rem;">
                 <div class="card-body">
                     <figure class="figure">
                         <img src="assets/images/categorias/livros.jpg" class="figure-img img-fluid rounded" alt="Categoria Livros">
-                        
                     </figure>
-                    <a href="" class="btn btn-primary">Livros</a>
+                    <a href="search.php?criterio=Livros" class="btn btn-primary">Livros</a>
                 </div>
             </div>
             <div class="card" style="width: 35rem;">
                 <div class="card-body">
                     <figure class="figure">
-                        <img src="assets/images/categorias/restaurantes.jpg" class="figure-img img-fluid rounded" alt="Categoria restaurantes">
+                        <img src="assets/images/categorias/diversos.jpg" class="figure-img img-fluid rounded" alt="Categoria restaurantes">
                     </figure>
-                    <a href="#" class="btn btn-primary">Restaurantes</a>
+                    <a href="search.php?criterio=Diversos" class="btn btn-primary">Diversos</a>
                 </div>
             </div>
             <div class="card" style="width: 35rem;">
@@ -128,7 +128,7 @@ require_once 'includes/header.php';
                     <figure class="figure">
                         <img src="assets/images/categorias/roupas.jpg" class="figure-img img-fluid rounded" alt="Categoria Roupas">
                     </figure>
-                    <a href="#" class="btn btn-primary">Roupas</a>
+                    <a href="search.php?criterio=Roupas" class="btn btn-primary">Roupas</a>
                 </div>
             </div>
             <div class="card" style="width: 35rem;">
@@ -136,7 +136,7 @@ require_once 'includes/header.php';
                     <figure class="figure">
                         <img src="assets/images/categorias/tecnologia.jpg" class="figure-img img-fluid rounded" alt="Categoria Tecnologia">
                     </figure>
-                    <a href="#" class="btn btn-primary">Tecnologia</a>
+                    <a href="search.php?criterio=Tecnologia" class="btn btn-primary">Tecnologia</a>
                 </div>
             </div>
         </div>

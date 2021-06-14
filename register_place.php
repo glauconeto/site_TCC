@@ -13,29 +13,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (!empty($_POST)) {
     // Cria um array para inserção de dados na tabela comerciante
     $comerciante = array (
-      'nome_comerciante' => $_POST['nameperson'],
-      'email' => filter_var($_POST['email'], FILTER_SANITIZE_EMAIL),
-      'cnpj' => preg_replace("/[^0-9]/", "", $_POST['cnpj'])
+      'nome_comerciante ' => $_POST['nameperson'],
+      'email' => $_POST['email'],
+      'CNPJ' => $_POST['cnpj']
     );
-
-    DBCreate('comerciante', DBEscape($comerciante));
-
-    $last_id = mysqli_insert_id($link);
+    
+    if(DBCreate('comerciante', $comerciante)) {
+      $last_id = get_last_id();
+    }
 
     // Cria um array para inserção de dados na tabela comercio
     $comercio = array (
       'nome_comercio' => $_POST['nameplace'],
       'endereco' => $_POST['endereco'],
-      'telefone' => preg_replace("/[^0-9]/", "", $_POST['telefone']),
+      'telefone' => $_POST['telefone'],
       'facebook' => $_POST['facebook'],
-      'celular' => preg_replace("/[^0-9]/", "", $_POST['celular']),
+      'celular' => $_POST['celular'],
       'descricao' => $_POST['descricao'],
-      'categoria' => $_POST['categoria'],
+      'categoria' => $_POST['select_categoria'],
       'id_comerciante' => $last_id
     );
-
     
-    DBCreate('comercio', DBEscape($comercio));
+    DBCreate('comercio', $comercio);
 
     // Insere na tabela comerciante
     $result = DBCreate('comercio', $comercio);
@@ -48,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     DBClose($link);
   }
+
   $dir = './uploads/';
   
   if (isset($_FILES['vitrine'])) {

@@ -70,7 +70,7 @@
               </div>
               <div class="for-group row">
                 <label for="arquivo">Imagens para galeria</label>
-                <input type="file" class="<?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" name="arquivo[]" multiple="multiple" /><br><br>
+                <input type="file" class="<?php echo (!empty($upload_err)) ? 'is-invalid' : ''; ?>" name="arquivo[]" multiple="multiple" /><br><br>
               </div>
               <div class="form-group row" style="padding-left: 60px;">
                 <select id="txt_maq" name="select_categoria">
