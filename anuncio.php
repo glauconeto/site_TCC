@@ -28,7 +28,7 @@ if($num_results > 0) {
                     <h3><?php echo $comercio['nome_comercio'] ?></h3>
                     <p class="lead mb-5"><?php echo $comercio['descricao'] ?></p>
                     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="GET">
-                      <button type="submit" name="favorite" value="<?php echo $comercio['id_comercio']?>" class="btn btn-lg btn-danger" data-toggle="popover" title="Favoritar" data-content="<?php echo (!empty($favorite_err)) ? 'is-invalid' : ''; ?>">
+                      <button type="submit" name="favorite" value="<?php echo $comercio['id_comercio'] ?>" class="btn btn-lg btn-danger" data-toggle="popover" title="Favoritar" data-content="<?php echo (!empty($favorite_err)) ? 'is-invalid' : ''; ?>">
                         <i class="fa fa-heart" aria-hidden="true"></i>
                       </button>
                     </form>
@@ -44,15 +44,15 @@ if($num_results > 0) {
                     <div id="carousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                           <div class="carousel-item active">
-                            <?php $imagem1 = "uploads/". $comercio['nome_comercio']. '-1.png' ?>
+                            <?php $imagem1 = "uploads/". $comercio['nome_comercio']. '-0.png' ?>
                             <img src="<?php echo $imagem1 ?>" class="d-block w-100" alt="Imagem 1">
                           </div>
                           <div class="carousel-item">
-                            <?php $imagem2 = 'uploads/'. $comercio['nome_comercio']. '-2.png'?>
+                            <?php $imagem2 = 'uploads/'. $comercio['nome_comercio']. '-1.png'?>
                             <img src="<?php echo $imagem2 ?>" class="d-block w-100" alt="Imagem 2">
                           </div>
                           <div class="carousel-item">
-                          <?php $imagem3 = "uploads/". $comercio['nome_comercio']. '-3.png' ?>
+                          <?php $imagem3 = "uploads/". $comercio['nome_comercio']. '-2.png' ?>
                             <img src="<?php echo $imagem3 ?>" class="d-block w-100" alt="Imagem 3">
                           </div>
                         </div>

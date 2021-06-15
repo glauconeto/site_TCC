@@ -29,7 +29,7 @@ require_once 'includes/header.php';
                                 </div>
                             </div>
                         </div>
-                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -55,27 +55,31 @@ require_once 'includes/header.php';
 
             $num_results = mysqli_num_rows($result);
             
-            if ($num_results > 0) {
-                    foreach ($result as $comercio) {
-                        echo '<div class="col-md-4">';
-                        echo '<div class="card">';
-                        echo '<div class="card-img-overlay align-items-center d-flex">';
-
-                        $vitrine = "uploads/". $comercio['nome_comercio']. '-vitrine.png';
-                        echo '<h4><a class="card-link" href="anuncio.php?id='. $comercio['id_comercio'].'">'. $comercio['nome_comercio'].'</a>';
-                                    echo '</h4>';
-                                echo '</div>';
-                                echo '<img class="img-fluid w-100 rounded" src="' .$vitrine. '"/>';
-                            echo '<div class="card-body">';
-                                echo '<h4 class="card-title">'. $comercio['categoria']. '</h4>';
-                            echo '</div>';
-                            echo '</div>';
-                        echo '</div>';
-                    }
-                    unset($result);
-            } else {
-                echo '<div class="alert alert-danger"><em>Sem registros encontrados</em></div>';
-            }
+            if ($num_results > 0):
+                foreach ($result as $comercio): ?>
+                <div class="col-md-4">
+                    <div class="card custom-card">
+                        <div class="card-img-overlay align-items-center d-flex">
+                            <?php $vitrine = "../uploads/". $comercio['nome_comercio']. "-vitrine.png" ?>
+                            <h4>
+                                <button type="button" class="btn btn-primary" style="    background-color: wheat;">
+                                    <a href="../anuncio.php?id=<?= $comercio['id_comercio']?>">
+                                    <?= $comercio['nome_comercio'] ?>
+                                    </a>
+                                </button>
+                            </h4>
+                        </div>
+                        <img class="img-fluid w-100 rounded" src="<?= $vitrine ?>" />
+                        <div class="card-body">
+                            <h4 class="card-title"><?= $comercio['categoria'] ?></h4>
+                        </div>
+                    </div>
+                </div>
+                <?php 
+                endforeach;
+            else:?>
+                <div class="alert alert-danger"><em>Sem comercios registrados</em></div>
+            <?php endif;
 
             // Fecha a conexão
             DBClose($link);
@@ -89,14 +93,13 @@ require_once 'includes/header.php';
                 <h2>Categorias</h2>
             </div>
         </div>
-
         <div class="row row-cols-6">
             <div class="card" style="width: 35rem;">
                 <div class="card-body">
                     <figure class="figure">
                         <img src="assets/images/categorias/restaurantes.jpg" class="figure-img img-fluid rounded" alt="Categoria Roupas">
                     </figure>
-                    <a href="pesquisa.php?criterio=Restaurantes" class="btn btn-primary">Restaurantes</a>
+                    <a href="search.php?q=Restaurantes" class="btn btn-primary">Restaurantes</a>
                 </div>
             </div>
             <div class="card" style="width: 35rem;">
@@ -104,7 +107,7 @@ require_once 'includes/header.php';
                     <figure class="figure">
                         <img src="assets/images/categorias/hortifruti.jpg" class="figure-img img-fluid rounded" alt="Categoria Alimentos">
                     </figure>
-                    <a href="pesquisa.php?criterio=Alimentos" class="btn btn-primary">Alimentos</a>
+                    <a href="search.php?q=Alimentos" class="btn btn-primary">Alimentos</a>
                 </div>
             </div>
             <div class="card" style="width: 35rem;">
@@ -112,15 +115,15 @@ require_once 'includes/header.php';
                     <figure class="figure">
                         <img src="assets/images/categorias/livros.jpg" class="figure-img img-fluid rounded" alt="Categoria Livros">
                     </figure>
-                    <a href="search.php?criterio=Livros" class="btn btn-primary">Livros</a>
+                    <a href="search.php?q=Livros" class="btn btn-primary">Livros</a>
                 </div>
             </div>
             <div class="card" style="width: 35rem;">
                 <div class="card-body">
                     <figure class="figure">
-                        <img src="assets/images/categorias/restaurantes.jpg" class="figure-img img-fluid rounded" alt="Categoria restaurantes">
+                        <img src="assets/images/categorias/diversos.jpg" class="figure-img img-fluid rounded" alt="Categoria Diversos">
                     </figure>
-                    <a href="search.php?criterio=Diversos" class="btn btn-primary">Diversos</a>
+                    <a href="search.php?q=Diversos" class="btn btn-primary">Diversos</a>
                 </div>
             </div>
             <div class="card" style="width: 35rem;">
@@ -128,7 +131,7 @@ require_once 'includes/header.php';
                     <figure class="figure">
                         <img src="assets/images/categorias/roupas.jpg" class="figure-img img-fluid rounded" alt="Categoria Roupas">
                     </figure>
-                    <a href="search.php?criterio=Roupas" class="btn btn-primary">Roupas</a>
+                    <a href="search.php?q=Roupas" class="btn btn-primary">Roupas</a>
                 </div>
             </div>
             <div class="card" style="width: 35rem;">
@@ -136,7 +139,7 @@ require_once 'includes/header.php';
                     <figure class="figure">
                         <img src="assets/images/categorias/tecnologia.jpg" class="figure-img img-fluid rounded" alt="Categoria Tecnologia">
                     </figure>
-                    <a href="search.php?criterio=Tecnologia" class="btn btn-primary">Tecnologia</a>
+                    <a href="search.php?q=Tecnologia" class="btn btn-primary">Tecnologia</a>
                 </div>
             </div>
         </div>

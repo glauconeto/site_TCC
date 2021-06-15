@@ -2,14 +2,6 @@
     footer {
       margin-top: 0px;
     }
-  
-    div.row {
-      padding-top: 10px;
-    }
-  
-    label {
-      padding-left: 34px;
-    }
   </style>
   
     <div class="py-5 text-center" style="background-image: url('https://static.pingendo.com/cover-bubble-dark.svg'); background-size:cover;">
@@ -56,7 +48,7 @@
               <div class="form-group row">
                 <label for="endereco" class="col-2 col-form-label">Endereço</label>
                 <div class="col-10">
-                  <input type="text" class="form-control" name="endereco" placeholder="Rua nome, número - bairro"></div>
+                  <input type="text" class="form-control" name="endereco" placeholder="Rua, número - bairro"></div>
               </div>
               <div class="form-group row">
                 <label for="descricao" class="col-2 col-form-label">Descrição</label>

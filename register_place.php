@@ -33,8 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       'categoria' => $_POST['select_categoria'],
       'id_comerciante' => $last_id
     );
-    
-    DBCreate('comercio', $comercio);
 
     // Insere na tabela comerciante
     $result = DBCreate('comercio', $comercio);
@@ -46,35 +44,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     
     DBClose($link);
-  }
 
-  $dir = './uploads/';
-  
-  if (isset($_FILES['vitrine'])) {
-    $ext = strtolower(substr($_FILES['vitrine']['name'],-4));
-  
-    if ($ext !== '.png') {
-      $upload_err = 'Extensão não permitida';
-    } else {
-      $new_name = $nomeEstabelecimento. "-vitrine" . $ext;
-      move_uploaded_file($_FILES['vitrine']['tmp_name'], $dir.$new_name);
+    $dir = './uploads/';
+    
+    if (isset($_FILES['vitrine'])) {
+      $ext = strtolower(substr($_FILES['vitrine']['name'],-4));
+    
+      if ($ext !== '.png') {
+        $upload_err = 'Extensão não permitida';
+      } else {
+        $new_name = $comercio['nome_comercio']. "-vitrine" . $ext;
+        move_uploaded_file($_FILES['vitrine']['tmp_name'], $dir.$new_name);
+      }
     }
-  }
-  
-  // Diretório para salvar as imagens.
-  $arquivo = isset($_FILES['arquivo']) ? $_FILES['arquivo'] : FALSE;
-  // Loop para ler as imagens.
-  for($controle = 0; $controle < count($arquivo['name']); $controle++) {
-    $nome = $arquivo['name'];
-    $extensao = pathinfo($_FILES['arquivo']['name'][$controle], PATHINFO_EXTENSION);
-    if ($extensao !== '.png') {
-      $upload_err = 'Extensão não permitida';
-    } else {
+    
+    // Diretório para salvar as imagens.
+    $arquivo = isset($_FILES['arquivo']) ? $_FILES['arquivo'] : FALSE;
+    // Loop para ler as imagens.
+    for ($controle = 0; $controle < count($arquivo['name']); $controle++) {
+      $extensao = pathinfo($_FILES['arquivo']['name'][$controle], PATHINFO_EXTENSION);
       $novaExtensao = strtolower($extensao);
-      $novoNome = $nomeEstabelecimento. "-". $controle. ".". $novaExtensao;
-      $destino = $dir. $novoNome;
-      move_uploaded_file($arquivo['tmp_name'][$controle], $destino);
-  
+        $novoNome = $comercio['nome_comercio']. "-". $controle . ".". $novaExtensao;
+        $destino = $dir. $novoNome;
+        if(!move_uploaded_file($arquivo['tmp_name'][$controle], $destino)) {
+          echo 'Erro ao realizar upload';
+      }
     }
   }
 }

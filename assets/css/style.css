@@ -23,12 +23,10 @@ div.jumbotron {
 }
 
 nav.navbar-custom {
-    /* background-color: #4E37F 0; */
     background-color: #1e7be6;
-    /* background-color: #164AE6; */
 }
 
 footer {
-    /* background-color: #4E37F0; */
+    background-color: #1e7be6;
     margin-top: 20px;
 }

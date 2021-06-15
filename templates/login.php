@@ -3,8 +3,7 @@
         margin-top: 0px;
     }
 </style>
-
-<div class="py-5 text-center align-items-center d-flex" style="background-image: linear-gradient(to left bottom, rgba(189, 195, 199, .75), rgba(44, 62, 80, .75)); background-size: 100%;">
+    <div class="py-5 text-center align-items-center d-flex" style="background-image: linear-gradient(to left bottom, rgba(189, 195, 199, .75), rgba(44, 62, 80, .75)); background-size: 100%;">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 mx-auto">

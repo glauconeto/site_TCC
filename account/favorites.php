@@ -29,23 +29,23 @@ require_once '../includes/header.php';
                 $num_results = mysqli_num_rows($result);
 
                 if ($num_results > 0):
-                    foreach ($result as $comercio):?>
+                    foreach ($result as $comercio): ?>
                     <div class="col-md-4">
-                        <div class="card">
+                        <div class="card custom-card">
                             <div class="card-img-overlay align-items-center d-flex">
-                                <?php $vitrine = "../uploads/". $comercio['nome_comercio']. "-vitrine.png"?>
+                                <?php $vitrine = "../uploads/". $comercio['nome_comercio']. "-vitrine.png" ?>
                                 <h4>
-                                    <a class="card-link" href="../anuncio.php?id=<?= $comercio['id_comercio']?>">
-                                        <?= $comercio['nome_comercio']?>
+                                    <a class="card-link" href="../anuncio.php?id=<?= $comercio['id_comercio'] ?>">
+                                        <?= $comercio['nome_comercio'] ?>
                                     </a>
                                 </h4>
                             </div>
-                            <img class="img-fluid w-100 rounded" src="<?= $vitrine?>" />
+                            <img class="img-fluid w-100 rounded" src="<?= $vitrine ?>" />
                             <div class="card-body">
-                                <h4 class="card-title"><?= $comercio['categoria']?></h4>
+                                <h4 class="card-title"><?= $comercio['categoria'] ?></h4>
                             </div>
                         </div>
-                        <a class="btn btn-danger" href="unfavorite.php?id=<?= $comercio['id_comercio']?>" title="Desfavoritar"><span class="fa fa-times"></span></a>
+                        <a class="btn btn-danger" href="unfavorite.php?id=<?= $comercio['id_comercio'] ?>" title="Desfavoritar"><span class="fa fa-times"></span></a>
                     </div>
                     <?php 
                     endforeach;
