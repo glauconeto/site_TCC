@@ -83,7 +83,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['token'])) {
             // Attempt to execute the prepared statement
             if (mysqli_stmt_execute($stmt)) {
                 // Redirect to login page
-                header("Location: ../login.php");
+                header("Location: login.php");
             } else {
                 echo mysqli_error($link);
             }

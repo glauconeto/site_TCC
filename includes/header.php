@@ -31,13 +31,13 @@
                             <li><a href="../account/favorites.php" class="nav-link">Meus favoritos</a></li>
                             <li><a href="../account/reset_password.php" class="nav-link">Esqueci minha senha</a><li>
                             <li><a href="../account/logout.php" class="nav-link">Sair</a></li>
-                        <?php else:?>
+                        <?php else: ?>
                                 <li><a href="../account/login.php" class="nav-link">Entrar</a></li>
             	        <?php endif; ?>
                     <li class="nav-item">
                         <form class="form-inline" action="../search.php" method="get">
                             <input class="form-control mr-sm-2" name="q" type="text" placeholder="Procure">
-                            <button class="btn btn-success" type="submit">Procurar</button>
+                            <button class="btn btn-success" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                         </form>
                     </li>
                 </ul>

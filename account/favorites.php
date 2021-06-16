@@ -20,8 +20,11 @@ require_once '../includes/header.php';
                 include '../db/database.php';
 
                 $link = DBConnect();
+                $id_user = $_SESSION['id'];
 
-                $sql = 'SELECT comercio.id_comercio, comercio.nome_comercio, comercio.categoria FROM favorito f INNER JOIN comercio ON comercio.id_comercio = f.id_comercio INNER JOIN usuario ON usuario.id_usuario = f.id_usuario';
+                $sql = "SELECT comercio.id_comercio, comercio.nome_comercio, comercio.categoria FROM favorito f 
+                INNER JOIN comercio ON comercio.id_comercio = f.id_comercio 
+                INNER JOIN usuario ON usuario.id_usuario = f.id_usuario WHERE f.id_usuario = $id_user";
 
                 DBExecute($sql);
 
@@ -45,12 +48,12 @@ require_once '../includes/header.php';
                                 <h4 class="card-title"><?= $comercio['categoria'] ?></h4>
                             </div>
                         </div>
-                        <a class="btn btn-danger" href="unfavorite.php?id=<?= $comercio['id_comercio'] ?>" title="Desfavoritar"><span class="fa fa-times"></span></a>
+                        <a class="btn btn-danger" href="unfavorite.php?id=<?= $comercio['id_comercio'] ?>" name="id" value="<?= trim($_GET['id']) ?>" title="Desfavoritar"><span class="fa fa-times"></span></a>
                     </div>
                     <?php 
                     endforeach;
                 else:?>
-                    <div class="alert alert-danger"><em>Sem favoritos encontrados</em></div>
+                    <div class="alert alert-danger"><p>Sem favoritos encontrados</p></div>
                 <?php endif;
             ?>
         </div>

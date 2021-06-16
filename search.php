@@ -12,7 +12,7 @@ require_once 'includes/header.php';
 if (isset($_GET['q'])) {
     $search = DBEscape($_GET['q']);
 
-    $sql = "SELECT * FROM comercio WHERE (`nome_comercio` LIKE '%$search%') OR (`descricao` LIKE '%$search%') OR (`categoria` LIKE '%$search%')";
+    $sql = "SELECT * FROM comercio WHERE (`nome_comercio` LIKE '%$search%') OR (`descricao` LIKE '%$search%') OR (`categoria` LIKE '%$search%') ORDER BY nome_comercio";
 
     $result = DBExecute($sql);
     $num_results = mysqli_num_rows($result);
@@ -33,7 +33,7 @@ if (isset($_GET['q'])) {
                                 <div class="card-img-overlay align-items-center d-flex">
                                     <?php $vitrine = "../uploads/". $comercio['nome_comercio']. "-vitrine.png"?>
                                     <h4>
-                                        <a class="card-link" href="../anuncio.php?id=<?= $comercio['id_comercio']?>">
+                                        <a class="card-link btn btn-outline-danger" href="../anuncio.php?id=<?= $comercio['id_comercio']?>">
                                         <?= $comercio['nome_comercio']?>
                                     </a>
                                 </h4>
@@ -44,13 +44,25 @@ if (isset($_GET['q'])) {
                             </div>
                         </div>
                     </div>
+                    <?php endforeach ?>
                 </div>
             </div>
         </div>
-<?php
-        endforeach;
-    else:?>
-        <p>Infelizmente, não temos nenhum resultado de acordo com sua busca.</p>
+    <?php else: ?>
+        <div class="py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="alert alert-danger"><p>Infelizmente, não temos nenhum resultado de acordo com sua busca.</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <style>
+            footer {
+                margin-top: 271px;
+            }
+        </style>
     <?php     
 endif;
 }

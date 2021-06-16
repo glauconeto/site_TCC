@@ -62,11 +62,9 @@ require_once 'includes/header.php';
                         <div class="card-img-overlay align-items-center d-flex">
                             <?php $vitrine = "../uploads/". $comercio['nome_comercio']. "-vitrine.png" ?>
                             <h4>
-                                <button type="button" class="btn btn-primary" style="    background-color: wheat;">
-                                    <a href="../anuncio.php?id=<?= $comercio['id_comercio']?>">
+                                <a href="../anuncio.php?id=<?= $comercio['id_comercio']?>" class="card-link btn btn-outline-danger">
                                     <?= $comercio['nome_comercio'] ?>
-                                    </a>
-                                </button>
+                                </a>
                             </h4>
                         </div>
                         <img class="img-fluid w-100 rounded" src="<?= $vitrine ?>" />
@@ -99,7 +97,7 @@ require_once 'includes/header.php';
                     <figure class="figure">
                         <img src="assets/images/categorias/restaurantes.jpg" class="figure-img img-fluid rounded" alt="Categoria Roupas">
                     </figure>
-                    <a href="search.php?q=Restaurantes" class="btn btn-primary">Restaurantes</a>
+                    <a href="search.php?q=Restaurantes" class="btn btn-danger">Restaurantes</a>
                 </div>
             </div>
             <div class="card" style="width: 35rem;">
@@ -107,7 +105,7 @@ require_once 'includes/header.php';
                     <figure class="figure">
                         <img src="assets/images/categorias/hortifruti.jpg" class="figure-img img-fluid rounded" alt="Categoria Alimentos">
                     </figure>
-                    <a href="search.php?q=Alimentos" class="btn btn-primary">Alimentos</a>
+                    <a href="search.php?q=Alimentos" class="btn btn-danger">Alimentos</a>
                 </div>
             </div>
             <div class="card" style="width: 35rem;">
@@ -115,7 +113,7 @@ require_once 'includes/header.php';
                     <figure class="figure">
                         <img src="assets/images/categorias/livros.jpg" class="figure-img img-fluid rounded" alt="Categoria Livros">
                     </figure>
-                    <a href="search.php?q=Livros" class="btn btn-primary">Livros</a>
+                    <a href="search.php?q=Livros" class="btn btn-danger">Livros</a>
                 </div>
             </div>
             <div class="card" style="width: 35rem;">
@@ -123,7 +121,7 @@ require_once 'includes/header.php';
                     <figure class="figure">
                         <img src="assets/images/categorias/diversos.jpg" class="figure-img img-fluid rounded" alt="Categoria Diversos">
                     </figure>
-                    <a href="search.php?q=Diversos" class="btn btn-primary">Diversos</a>
+                    <a href="search.php?q=Diversos" class="btn btn-danger">Diversos</a>
                 </div>
             </div>
             <div class="card" style="width: 35rem;">
@@ -131,7 +129,7 @@ require_once 'includes/header.php';
                     <figure class="figure">
                         <img src="assets/images/categorias/roupas.jpg" class="figure-img img-fluid rounded" alt="Categoria Roupas">
                     </figure>
-                    <a href="search.php?q=Roupas" class="btn btn-primary">Roupas</a>
+                    <a href="search.php?q=Roupas" class="btn btn-danger">Roupas</a>
                 </div>
             </div>
             <div class="card" style="width: 35rem;">
@@ -139,7 +137,7 @@ require_once 'includes/header.php';
                     <figure class="figure">
                         <img src="assets/images/categorias/tecnologia.jpg" class="figure-img img-fluid rounded" alt="Categoria Tecnologia">
                     </figure>
-                    <a href="search.php?q=Tecnologia" class="btn btn-primary">Tecnologia</a>
+                    <a href="search.php?q=Tecnologia" class="btn btn-danger">Tecnologia</a>
                 </div>
             </div>
         </div>

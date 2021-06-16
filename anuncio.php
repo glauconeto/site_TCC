@@ -91,9 +91,9 @@ if($num_results > 0) {
                     <td>
                         <h1>
                           <a href="https://facebook.com/<?php echo $comercio['facebook']; ?>" target="_blank" style="color: #e8f3ff;">
-                            <button class="btn btn-info" data-toggle="popover" title="FaceBook">
-                                    <i class="fa fa-facebook"></i>
-                                  </button>
+                            <button class="btn btn-info" data-toggle="popover" title="Facebook">
+                                <i class="fa fa-facebook"></i>
+                            </button>
                           </a>
                         </h1>
                     </td>
@@ -129,38 +129,23 @@ $link = DBConnect();
 
 if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_GET['favorite'])) {
   $id_user = $_SESSION['id'];
-  $id_comercio = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+  $id_comercio = $_GET['favorite'];
   $link = DBConnect();
 
-  $sql = "SELECT id_comercio FROM favorito WHERE id_usuario = ?";
+  $sql = "SELECT id_comercio FROM favorito WHERE id_comercio = '$id_comercio'";
 
-  if($stmt = mysqli_prepare($link, $sql)) {
-    mysqli_stmt_bind_param($stmt, 'i', $param_id);
+  $result = DBExecute($sql);
+  $num_results = mysqli_num_rows($result);
 
-    $param_id = $id_comercio;
-
-    if (mysqli_stmt_execute($stmt)) {
-      mysqli_stmt_store_result($stmt);
-
-      if (mysqli_stmt_num_rows($stmt) == 1) {
-        $favorite_err = 'Esse comércio já está nos seus favoritos.';
-      } else {
-        $id = $id_comercio;
-      }
-    } else {
-      echo mysqli_error($link);
-    }
-  }
+  if($num_results == 1) {
+    $favorite_err = 'Esse favorito já está nos seus favoritos';
+  } else {
+    $ids = array (
+      'id_usuario' => $_SESSION['id'],
+      'id_comercio' => intval($_GET['favorite'])
+    );
   
-  $sql = 'INSERT INTO favorito (id_usuario, id_comercio) VALUES (?, ?)';
-
-  if($stmt = mysqli_prepare($link, $sql)) {
-    mysqli_stmt_bind_param($stmt, 'ii', $param_id_commerce, $param_id_user);
-
-    $param_id_commerce = $id_comercio;
-    $param_id_user = $id_user;
-
-    if(mysqli_stmt_execute($stmt)) {
+    if(DBCreate('favorito', DBEscape($ids))) {
       header('Location: account/favorites.php');
     }
   }

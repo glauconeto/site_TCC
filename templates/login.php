@@ -21,7 +21,7 @@
                         </div>
                         <div class="form-group">
                         <input type="submit" class="btn btn-primary" value="Login">
-                        <p>Não tem uma conta ? <a href="register.php">Crie uma conta!</a></p>
+                        <p>Não tem uma conta ? <a href="register.php">Crie uma!</a></p>
                         </div>
                     </form>
                 </div>
