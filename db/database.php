@@ -2,7 +2,23 @@
 
 require_once("connection.php");
 
-//Realizar a inserção de dados
+// Seleciona registro do DB
+function DBRead($tabela, $campos = '*', $parametros = null) {
+    $query = "SELECT {$campos} FROM $tabela {$parametros}";
+    $result = DBExecute($query);
+
+    if (!mysqli_num_rows($result)) {
+        return 'Nenhum dado encontrado';
+    } else {
+        while($res = mysqli_fetch_assoc($result)) {
+            $dados[] = $res;
+        }
+    }
+
+    return $dados;
+}
+
+// Realiza a inserção de dados
 function DBCreate($tabela, array $dados){
     $dados = DBEscape($dados);
 
@@ -14,7 +30,7 @@ function DBCreate($tabela, array $dados){
     return DBExecute($query);
 }
 
-//Executar Query SQL
+// Executa Query SQL
 function DBExecute($sql){
     $link   = DBConnect();
     $result = @mysqli_query($link, $sql) or die(mysqli_error($link));
@@ -23,6 +39,7 @@ function DBExecute($sql){
     return $result;
 }
 
+// Pega último id inserido da tabela comerciante
 function get_last_id() {
     $query = 'SELECT * FROM comerciante WHERE id_comerciante = (SELECT max(id_comerciante) FROM comerciante)';
 

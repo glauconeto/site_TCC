@@ -9,21 +9,21 @@ $username_err = $password_err = $login_err = '';
 $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(16));
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-    header('location: profile.php');
+    header('location: ../index.php');
     exit;
 }
  
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['token'])) {
     // Check if username is empty
     if (empty(trim($_POST["username"]))) {
-        $username_err = "Please enter username.";
+        $username_err = "Por favor digite seu nome de usuário.";
     } else {
         $username = trim($_POST["username"]);
     }
     
     // Check if password is empty
     if (empty(trim($_POST["password"]))) {
-        $password_err = "Please enter your password.";
+        $password_err = "Por favor digite sua senha.";
     } else {
         $password = trim($_POST["password"]);
     }
@@ -63,12 +63,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['token'])) {
                             header("location: ../index.php");
                         } else {
                             // Password is not valid, display a generic error message
-                            $login_err = "Invalid username or password.";
+                            $login_err = "Nome de usuário ou senha inválidos.";
                         }
                     }
                 } else {
                     // Username doesn't exist, display a generic error message
-                    $login_err = "Invalid username or password.";
+                    $login_err = "Nome de usuário ou senha inválidos.";
                 }
             } else {
                 echo mysqli_erro($link);

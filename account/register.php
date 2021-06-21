@@ -11,12 +11,12 @@ $username_err = $password_err = $confirm_password_err = '';
 
 $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(16));
 
-if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['token'])) {
+if($_SERVER["REQUEST_METHOD"] == "post" && isset($_SESSION['token'])) {
     // Validate username
     if (empty(trim($_POST["username"]))) {
         $username_err = "Por favor digite um nome de usuário.";
     } elseif (!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"]))) {
-        $username_err = "Username can only contain letters, numbers, and underscores.";
+        $username_err = "Nome de usuário pode conter apenas letras, números e underlines.";
     } else {
         // Prepare a select statement
         $sql = "SELECT id_usuario FROM usuario WHERE nome = ?";
@@ -34,7 +34,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['token'])) {
                 mysqli_stmt_store_result($stmt);
                 
                 if (mysqli_stmt_num_rows($stmt) == 1) {
-                    $username_err = "This username is already taken.";
+                    $username_err = "Esse nome de usuário já está sendo usado.";
                 } else {
                     $username = trim($_POST["username"]);
                 }
@@ -49,7 +49,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['token'])) {
     
     // Validate password
     if(empty(trim($_POST["password"]))) {
-        $password_err = "Please enter a password.";     
+        $password_err = "Por favor digite uma senha.";     
     } elseif (strlen(trim($_POST["password"])) < 8) {
         $password_err = "Password must have atleast 8 characters.";
     } else {
@@ -58,11 +58,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['token'])) {
     
     // Validate confirm password
     if (empty(trim($_POST["confirm_password"]))) {
-        $confirm_password_err = "Please confirm password.";     
+        $confirm_password_err = "Por favor confirme a senha.";     
     } else {
         $confirm_password = trim($_POST["confirm_password"]);
         if (empty($password_err) && ($password != $confirm_password)) {
-            $confirm_password_err = "Password did not match.";
+            $confirm_password_err = "Senhas não conferem.";
         }
     }
     
@@ -85,7 +85,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['token'])) {
                 // Redirect to login page
                 header("Location: login.php");
             } else {
-                echo mysqli_error($link);
+                echo 'OPA! Algo de errado aconteceu. Por favor tente novamente depois';
             }
 
             // Fecha a declaração

@@ -7,31 +7,30 @@ require_once 'includes/header.php';
 ?>
 
 <div class="py-5 text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h1 class="display-3">Bem-vindo ao nosso site</h1>
-                    <p class="lead text-muted">Encontre o que precisa rapidamente</p>
-                    <div class="card bg-light">
-                        <div class="card-body text-center">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <h3>Escolha Categorias</h3>
-                                    <p>
-                                        Temos diversas categorias para você escolher o que fazer,
-                                        dentre roupas, livros, comida, restaurantes e outros!
-                                    </p>
-                                </div>
-                                <div class="col-sm-6">
-                                    <h3>Conheça diversos lugares fantásticos</h3>
-                                    <p>Explore lugares divertidos para comprar diversos produtos e roupas diferentes do habitual.</p>
-                                </div>
-                                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="display-3">Bem-vindo ao nosso site</h1>
+                <p class="lead text-muted">Encontre o que precisa rapidamente</p>
+                <div class="card bg-light">
+                    <div class="card-body text-center">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h3>Escolha Categorias</h3>
+                                <p>
+                                    Temos diversas categorias para você escolher o que fazer, dentre roupas, livros, comida, restaurantes e outros!
+                                </p>
+                            </div>
+                            <div class="col-sm-6">
+                                <h3>Conheça diversos lugares fantásticos</h3>
+                                <p>Explore lugares divertidos para comprar diversos produtos e roupas diferentes do habitual.</p>
+                            </div>
                             </div>
                         </div>
-                </div>
+                    </div>
             </div>
         </div>
+    </div>
     </div>
     <div class="py-4">
         <div class="container">
@@ -48,15 +47,9 @@ require_once 'includes/header.php';
             require_once 'db/database.php';
 
             $link = DBConnect();
-
-            // Atente-se a execução da query preparada
-            $sql = "SELECT * FROM comercio";
-            $result = DBExecute($sql);
-
-            $num_results = mysqli_num_rows($result);
             
-            if ($num_results > 0):
-                foreach ($result as $comercio): ?>
+            if ($dados = DBRead('comercio', '*', null)):
+                foreach ($dados as $comercio): ?>
                 <div class="col-md-4">
                     <div class="card custom-card">
                         <div class="card-img-overlay align-items-center d-flex">

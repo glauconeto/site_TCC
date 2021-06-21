@@ -1,6 +1,7 @@
 <style>
     footer {
-        margin-top: 0px;
+        padding-top: 15px;
+        margin-block-start: 0px;
     }
 </style>
     <div class="py-5 text-center align-items-center d-flex" style="background-image: linear-gradient(to left bottom, rgba(189, 195, 199, .75), rgba(44, 62, 80, .75)); background-size: 100%;">
@@ -23,6 +24,7 @@
                         <input type="submit" class="btn btn-primary" value="Login">
                         <p>Não tem uma conta ? <a href="register.php">Crie uma!</a></p>
                         </div>
+                        <div class="py-3"></div>
                     </form>
                 </div>
             </div>

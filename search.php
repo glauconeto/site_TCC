@@ -4,7 +4,6 @@ require_once 'db/connection.php';
 require_once 'db/database.php';
 
 $link = DBConnect();
-
 $title = 'Pesquisa';
 
 require_once 'includes/header.php';
@@ -13,11 +12,9 @@ if (isset($_GET['q'])) {
     $search = DBEscape($_GET['q']);
 
     $sql = "SELECT * FROM comercio WHERE (`nome_comercio` LIKE '%$search%') OR (`descricao` LIKE '%$search%') OR (`categoria` LIKE '%$search%') ORDER BY nome_comercio";
+    $num_results = mysqli_num_rows(DBExecute($sql));
 
-    $result = DBExecute($sql);
-    $num_results = mysqli_num_rows($result);
-    
-    if ($num_results > 0):?>
+    if ($dados = DBRead('comercio', '*', "WHERE (`nome_comercio` LIKE '%$search%') OR (`descricao` LIKE '%$search%') OR (`categoria` LIKE '%$search%') ORDER BY nome_comercio")):?>
         <div class="py-4">
             <div class="container">
                 <div class="row">
@@ -27,7 +24,7 @@ if (isset($_GET['q'])) {
                     </div>
                 </div>
                 <div class="row">
-                    <?php foreach ($result as $comercio):?>
+                    <?php foreach ($dados as $comercio):?>
                         <div class="col-md-4">
                             <div class="card custom-card">
                                 <div class="card-img-overlay align-items-center d-flex">

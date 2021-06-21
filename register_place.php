@@ -4,12 +4,12 @@ require_once 'db/connection.php';
 require_once 'db/database.php';
 
 $link = DBConnect();
-
 $upload_err = '';
+$_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(20));
 
 // A pasta de upload terá o mesmo nome que o comércio
 // Os arquivos serão: nome_comercio-1, nome_comercio-2...
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['token'])) {
   if (!empty($_POST)) {
     // Cria um array para inserção de dados na tabela comerciante
     $comerciante = array (

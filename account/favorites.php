@@ -1,5 +1,10 @@
 <?php
 
+if(!isset($_SESSION['id'])) {
+    header('Location: login.php');
+    exit;
+}
+
 $title = 'Meus favoritos';
 require_once '../includes/header.php';
 
@@ -22,17 +27,9 @@ require_once '../includes/header.php';
                 $link = DBConnect();
                 $id_user = $_SESSION['id'];
 
-                $sql = "SELECT comercio.id_comercio, comercio.nome_comercio, comercio.categoria FROM favorito f 
-                INNER JOIN comercio ON comercio.id_comercio = f.id_comercio 
-                INNER JOIN usuario ON usuario.id_usuario = f.id_usuario WHERE f.id_usuario = $id_user";
-
-                DBExecute($sql);
-
-                $result = DBExecute($sql);
-                $num_results = mysqli_num_rows($result);
-
-                if ($num_results > 0):
-                    foreach ($result as $comercio): ?>
+                if ($dados = DBRead('favorito f', 'comercio.id_comercio, comercio.nome_comercio, comercio.categoria', "INNER JOIN comercio ON comercio.id_comercio = f.id_comercio 
+                INNER JOIN usuario ON usuario.id_usuario = f.id_usuario WHERE f.id_usuario = $id_user ORDER BY nome_comercio")):
+                    foreach ($dados as $comercio): ?>
                     <div class="col-md-4">
                         <div class="card custom-card">
                             <div class="card-img-overlay align-items-center d-flex">
