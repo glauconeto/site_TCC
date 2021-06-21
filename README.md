@@ -1,2 +1,25 @@
 # site_TCC
-Projeto do meu Trabalho de Conclusão de Curso para o curso técnico de informática
+Projeto de Trabalho de Conclusão de Curso técnico de informática
+
+<br/>
+<br/>
+
+## Alunos: 
+
+- Glauco Neto (CP3007901)
+- Isabeli Cardoso (CP3006891)
+- João Vitor Alves (CP3007537)
+- Íris Grillo (CP3006239)
+
+<br>## Descrição: 
+
+Sistema de catalogação e cadastro de estabelecimentos para o tempo de pandemia. Cadastro feito com informações pessoais de um referente da empresa com intuito de ter alguém responsável pela empresa e com informações importantes para as pessoas que irão visualizar o perfil daquele comércio. 
+Todas as informações são armazenadas com integridade e segurança no banco de dados escolhido. Pesquisas por categoria simples e funcionais, podendo filtrar entre categorias e termos.
+
+<br>## Aspecto técnico:
+
+- Linguagens de programação utilizada: PHP (server-side) e JavaScript (client-side)
+- Construção de páginas: HTML e CSS, linguagens de marcação
+- Banco de dados escolhido: MySQL
+- Ferramenta de edição de código-fonte(IDE ou editor de código-fonte): Visual Studio Code
+- Ferramenta de Administração de Banco de Dados Gráfica: DBeaver
