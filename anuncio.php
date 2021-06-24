@@ -63,18 +63,18 @@ if($dados = DBRead('comercio', '*', "WHERE id_comercio = '$id'")) {
                           $result = DBExecute($sql);
                           $num_results = mysqli_num_rows($result);
 
-                          if (isset($_SESSION['id'])) {
-                            if ($num_results == 0) {?>
+                          if (isset($_SESSION['id'])):
+                            if ($num_results == 0): ?>
                               <div class='button' method='Like' user_id='<?= $user_id ?>' commerce_id='<?= $commerce_id ?>'><i class="fa fa-heart-o" id="<?= $commerce_id ?>"></i></div>
                             <?php
-                            } else {?>
+                            else: ?>
                               <div class='button' method='Unlike' user_id='<?= $user_id ?>' commerce_id='<?= $commerce_id ?>'><i class="fa fa-heart" id="<?= $commerce_id ?>"></i></div>
                               <?php
-                              }                           
-                          } else {?>
+                              endif;      
+                           else :?>
                               <div id="login">Faça login para favoritar</div>
                             <?php
-                          }
+                          endif;
                         }
                         
                         $commerce_id = $_GET['id'];
