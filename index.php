@@ -69,7 +69,7 @@ require_once 'includes/header.php';
                 <?php 
                 endforeach;
             else:?>
-                <div class="alert alert-danger"><em>Sem comercios registrados</em></div>
+                <div class="alert alert-danger">Sem comercios registrados</div>
             <?php endif;
 
             // Fecha a conexão
