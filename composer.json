@@ -1,0 +1,14 @@
+{
+    "name": "neto/site_tcc",
+    "description": "Site do TCC como plataforma web de ajuda a comércios",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "glauconeto",
+            "email": "neto.glauquinho@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
