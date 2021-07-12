@@ -1,6 +1,7 @@
 <style>
     footer {
         padding-top: 15px;
+        padding-bottom: 20rem;
         margin-block-start: 0px;
     }
 </style>
