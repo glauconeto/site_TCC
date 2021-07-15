@@ -78,7 +78,7 @@ if($dados = DBRead('comercio', '*', "WHERE id_comercio = '$id'")) {
                         }
                         
                         $commerce_id = $_GET['id'];
-                        $user_id = $_SESSION['id'];
+                        $user_id = (isset($_SESSION['id'])) ? $_SESSION['id'] : null;
                         
                         $icon = checkFavorite($user_id, $commerce_id);
                         echo $icon;

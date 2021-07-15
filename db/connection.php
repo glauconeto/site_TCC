@@ -30,7 +30,8 @@ function DBClose($link){
 
 //Cria conexão com o BD
 function DBConnect(){
-    @$link = mysqli_connect(DB_HOSTNAME, DB_USER, DB_PASSWORD, DB_DATABASE); 
+    // $link = mysqli_connect(DB_HOSTNAME, DB_USER, DB_PASSWORD, DB_DATABASE);
+    $link = mysqli_connect('localhost', 'neto', 'netozica', 'db_tcc');
     if (!$link){
         die('<strong>Erro de Conexão: não foi possível se 
             conectar ao Banco de Dados!</strong>');
