@@ -1,3 +1,5 @@
+<?php session_start() ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -26,11 +28,14 @@
                         <a class="nav-link" href="../register_place.php">Sugerir estabelecimento</a>
                     </li>
                         <?php
+<<<<<<< HEAD
 	                        require('vendor/autoload.php');
                             session_start();
+=======
+>>>>>>> f77ac07696d2f69f27399eb24a5a221219514a58
                             if (isset($_SESSION['id']) && $_SESSION['loggedin'] === true): ?>
                             <li><a href="../account/favorites.php" class="nav-link">Meus favoritos</a></li>
-                            <li><a href="../account/reset_password.php" class="nav-link">Esqueci minha senha</a><li>
+                            <li><a href="../account/reset_password.php" class="nav-link">Redefinir senha</a><li>
                             <li><a href="../account/logout.php" class="nav-link">Sair</a></li>
                         <?php else: ?>
                                 <li><a href="../account/login.php" class="nav-link">Entrar</a></li>
