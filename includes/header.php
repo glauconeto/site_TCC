@@ -26,6 +26,7 @@
                         <a class="nav-link" href="../register_place.php">Sugerir estabelecimento</a>
                     </li>
                         <?php
+	                        require('vendor/autoload.php');
                             session_start();
                             if (isset($_SESSION['id']) && $_SESSION['loggedin'] === true): ?>
                             <li><a href="../account/favorites.php" class="nav-link">Meus favoritos</a></li>

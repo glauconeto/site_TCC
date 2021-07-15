@@ -2,7 +2,7 @@ CREATE TABLE comerciante (
   id_comerciante int NOT NULL AUTO_INCREMENT,
   nome_comerciante varchar(100) DEFAULT NULL,
   email varchar(250) DEFAULT NULL,
-  CNPJ varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  CNPJ varchar(20) DEFAULT NULL,
   PRIMARY KEY (id_comerciante)
 );
 
@@ -18,7 +18,8 @@ CREATE TABLE comercio (
   id_comerciante int NOT NULL,
   PRIMARY KEY (id_comercio),
   KEY ce_ComercianteComercio (id_comerciante),
-  CONSTRAINT ce_ComercianteComercio FOREIGN KEY (id_comerciante) REFERENCES comerciante (id_comerciante) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT ce_ComercianteComercio FOREIGN KEY (id_comerciante) REFERENCES comerciante (id_comerciante) 
+  ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE favorito (
