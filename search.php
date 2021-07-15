@@ -24,27 +24,34 @@ if (isset($_GET['q'])) {
                     </div>
                 </div>
                 <div class="row">
-                    <?php foreach ($dados as $comercio):?>
-                        <div class="col-md-4">
-                            <div class="card custom-card">
-                                <div class="card-img-overlay align-items-center d-flex">
-                                    <?php $vitrine = "../uploads/". $comercio['nome_comercio']. "-vitrine.png"?>
-                                    <h4>
-                                        <a class="card-link btn btn-outline-danger" href="../anuncio.php?id=<?= $comercio['id_comercio']?>">
-                                        <?= $comercio['nome_comercio']?>
-                                    </a>
-                                </h4>
-                            </div>
-                            <img class="img-fluid w-100 rounded" src="<?= $vitrine?>" />
-                            <div class="card-body">
-                                <h4 class="card-title"><?= $comercio['categoria']?></h4>
-                            </div>
-                        </div>
-                    </div>
-                    <?php endforeach ?>
+                	<?php if(is_array($dados)): ?>
+	                    <?php foreach ($dados as $comercio):?>
+	                        <div class="col-md-4">
+	                            <div class="card custom-card">
+	                                <div class="card-img-overlay align-items-center d-flex">
+	                                    <?php $vitrine = "../uploads/". $comercio['nome_comercio']. "-vitrine.png"?>
+	                                    <h4>
+	                                        <a class="card-link btn btn-outline-danger" href="../anuncio.php?id=<?= $comercio['id_comercio']?>">
+	                                        <?= $comercio['nome_comercio']?>
+	                                    </a>
+	                                </h4>
+	                            </div>
+	                            <img class="img-fluid w-100 rounded" src="<?= $vitrine?>" />
+	                            <div class="card-body">
+	                                <h4 class="card-title"><?= $comercio['categoria']?></h4>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <?php endforeach ?>
+                   	<?php endif ?>
                 </div>
             </div>
         </div>
+        <style>
+            footer {
+            	margin-top: 18rem;
+            }
+        </style>
     <?php else: ?>
         <div class="py-4">
             <div class="container">
