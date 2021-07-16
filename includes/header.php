@@ -1,3 +1,8 @@
+<?php
+@ob_start();
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -26,7 +31,6 @@
                         <a class="nav-link" href="../register_place.php">Sugerir estabelecimento</a>
                     </li>
                         <?php
-                            session_start();
                             if (isset($_SESSION['id']) && $_SESSION['loggedin'] === true): ?>
                             <li><a href="../account/favorites.php" class="nav-link">Meus favoritos</a></li>
                             <li><a href="../account/reset_password.php" class="nav-link">Redefinir senha</a><li>

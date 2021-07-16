@@ -4,11 +4,15 @@
         margin-block-start: 0px;
     }
 </style>
-    <div class="py-5 text-center align-items-center d-flex" style="background-image: linear-gradient(to left bottom, rgba(189, 195, 199, .75), rgba(44, 62, 80, .75)); background-size: 100%;">
+    <div class="py-5 text-center align-items-center d-flex" style="background-image: linear-gradient(to left bottom, rgba(189, 195, 199, .75), rgba(44, 62, 80, .75)); background-size: 100%; left: 20em;">
         <div class="container">
-            <div class="row">
-                <div class="col-md-8 mx-auto">
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <div class="row wrapper">
+                    <?php 
+                        if(!empty($login_err)){
+                            echo '<div class="alert alert-danger" style="margin: 1; left: 38px; 0px 7px;">' . $login_err . '</div>';
+                        }
+                    ?>
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" style="padding-left: 20em;">
                         <h1><i class="fa fa-user" aria-hidden="true"></i></h1>
                         <div class="form-group">
                             <label>Nome de usuário</label>
