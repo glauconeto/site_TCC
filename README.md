@@ -11,5 +11,5 @@ Todas as informações são armazenadas com integridade e segurança no banco de
 ## Aspecto técnico:
 
 - Linguagens de programação utilizada: PHP (server-side) e JavaScript (client-side)
-- Construção de páginas: HTML e CSS, linguagens de marcação
-- Banco de dados escolhido: MySQL
+- Construção de páginas: HTML e CSS
+- Banco de dados: MySQL
